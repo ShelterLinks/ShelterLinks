@@ -43,14 +43,13 @@
       console.log(error);;
       promise.catch(e=>console.log(e.message));
     });
-
+  });
     firebase.auth().onAuthStateChanged(firebaseUser=>{
       if (firebaseUser){
-        window.location.replace("pages/events.html");
+        window.location.replace("events.html");
         console.log(firebaseUser);
       }else{
         console.log('not logged in');
       }
     });
-  });
 }());
