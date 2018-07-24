@@ -15,6 +15,8 @@
     const locations=location.value;
     const descriptions=description.value;
     const numOfVolunteer=numOfVolunteers.value;
+    var user = firebase.auth().currentUser;
+    console.log(user.displayName)
     var db = firebase.firestore();
     db.collection("Events").doc("BronxWorks").set({
       name: name,

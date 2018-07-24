@@ -20,7 +20,7 @@ input {
   width:100%;
 }
 .makeAccount{
-  padding-top:25vh;
+  padding-top:20vh;
   padding-bottom:50px;
 }
 .logo{
@@ -29,10 +29,14 @@ input {
   max-height:200px;
   position:relative;
   left:35%;
-  top:10vh;
+  top:5vh;
 }
 .btn-primary{
   width:100px;
   padding:10px;
   margin-top:50px;
+}
+.google{
+  position:relative;
+  top:5vh;
 }
