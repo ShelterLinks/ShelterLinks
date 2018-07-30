@@ -10,8 +10,11 @@
 	</author>
 
 	<preference name="phonegap-version" value="cli-6.5.0" />
+	<plugin name="cordova-plugin-firebase" source="npm" spec="^1.0.0" />
+
+
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-    <access origin="*" launch-external="yes" />
+    <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
 </widget>
