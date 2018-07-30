@@ -9,7 +9,7 @@
 	  	ShelterLinks Team
 	</author>
 
-	<preference name="phonegap-version" value="3.7.0" />
+	<preference name="phonegap-version" value="6.5.0" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <access origin="*" />
     <allow-navigation href="*" />
