@@ -11,7 +11,7 @@
 
 	<preference name="phonegap-version" value="cli-6.5.0" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-    <access origin="*" />
+    <access origin="*" launch-external="yes" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
 </widget>
