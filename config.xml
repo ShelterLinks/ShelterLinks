@@ -10,4 +10,5 @@
 	</author>
 
 	<preference name="phonegap-version" value="cli-6.5.0" />
+	<plugin spec="https://github.com/ShelterLinks/cordova-plugin-firebase” />
 </widget>
