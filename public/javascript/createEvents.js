@@ -21,6 +21,7 @@
     org=user.displayName+"";
     var db = firebase.firestore();
     db.collection("Events").doc(org).set({
+      organization: org,
       name: names,
       date:dates,
       time:times,

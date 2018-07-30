@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "138981597567",
+    "firebase_url": "https://shelterlinks-39c9a.firebaseio.com",
+    "project_id": "shelterlinks-39c9a",
+    "storage_bucket": "shelterlinks-39c9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138981597567:android:23aaa8a4ed22df9b",
+        "android_client_info": {
+          "package_name": "com.shelterlinks.shelterlinks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138981597567-dl294hofpsjck236ndna6gpc6nrpio8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQgxFBpg7lC0ij4Z_q-kSG9M11W58wof0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
