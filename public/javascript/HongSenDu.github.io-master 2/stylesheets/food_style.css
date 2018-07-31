@@ -1,0 +1,17 @@
+#abovePic #food {
+    background: url(../img/food_Background.jpg);
+    height: 100%;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index:-2;
+}
+#abovePic .text .food_text {
+    font-size: 108px;
+    font-size: 7vw;
+    text-decoration: bold;
+    font-weight: 1500;
+    font-family: 'Dancing Script', cursive;
+}
