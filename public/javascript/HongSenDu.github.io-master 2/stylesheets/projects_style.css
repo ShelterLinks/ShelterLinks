@@ -1,0 +1,113 @@
+section{
+    background: #eee;
+    max-width: 100%;
+    padding: 10px calc((100% - 1400px) / 2);
+    padding-top:20px;
+}
+#abovePic #projects {
+    background: url(../img/engineer_Background.png);
+    height: 100%;
+    width: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index:-2;
+}
+#abovePic .text .projects_text {
+    font-size: 108px;
+    font-size: 7vw;
+    text-decoration: bold;
+    font-weight: 1500;
+    font-family: 'Dancing Script', cursive;
+}
+
+.left{
+  float:left;
+  width:50%;
+
+}
+.right{
+  float:right;
+  width:50%;
+}
+.allProjects{
+  background-color:white;
+}
+.projecto{
+  border:solid;
+  background-color:#FFFFFF;
+  margin-top:50px;
+  margin-bottom:50px;
+  margin-right:75px;
+  margin-left:75px;
+  text-align:center;
+}
+.projectTitle{
+  padding:10px 10px 10px 10px;
+  font-size:30px;
+  font-family: 'Montserrat', monospace;
+}
+
+.projectImage{
+  width:100%;
+  height:350px;
+  margin-bottom:0px;
+}
+.date{
+  padding:0px 10px 10px 10px;
+  font-weight:400;
+  font-family:'Cormorant+Garamond',monospace;
+
+}
+#proj{
+  text-align:center;
+  font-family: 'Montserrat', sans-serif;
+  font-size:50px;
+  margin-top:20px;
+}
+.projectImage:hover{
+  filter:brightness(55%);
+  transition:250ms;
+}
+
+
+
+@media screen and (max-width: 1080px) {
+  .left{
+    float:none;
+    width:100%;
+  }
+  .right{
+    float:none;
+    width:100%;
+  }
+  .projectImage{
+    width:100%;
+    height:200px;
+    margin-bottom:0px;
+  }
+  .projecto{
+    border:solid;
+    background-color:#FFFFFF;
+    margin-top:50px;
+    margin-bottom:50px;
+    margin-left:200px;
+    margin-right:200px;
+    text-align:center;
+  }
+}
+@media screen and (max-width: 720px) {
+  .projecto{
+    margin-right:20px;
+    margin-left:20px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .burgers{
+    right:18px;
+  }
+  .text {
+      text-shadow: 1px 1px 0px rgba(0,0,0,0.05), 1px 1px 0px rgba(0,0,0,0.05);
+  }
+}
