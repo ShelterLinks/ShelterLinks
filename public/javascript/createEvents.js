@@ -21,7 +21,7 @@
     org=user.displayName+"";
     var db = firebase.firestore();
     var formatDate=dates.substring(5,7)+"/"+dates.substring(8)+"/"+dates.substring(0,4);
-    db.collection("Events").doc(org).set({
+    db.collection("Events").doc().set({
       organization: org,
       name: names,
       date:formatDate,
