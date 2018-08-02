@@ -14,6 +14,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
+  <script src="../javascript/firebase.js"></script>
   <script>
   // Initialize Firebase
   var config = {
@@ -35,18 +36,23 @@
   </video>
   <div class="container">
     <img class="logo" src="../images/logo.png"/>
-    <div class="makeAccount"><input id="txtName" type="text" placeholder="Name"><div>
-    <input id="txtEmail" type="email" placeholder="Email">
-    <input id="txtPassword" type="password" placeholder="Password">
-
-    <button id="btnSignUp" class="btn btn-primary btn-lg">Sign Up</button><br>
-    <button id="shelterSignUp" class="btn btn-primary btn-lg">Sign Up as a Shelter</button>
-  </div>
+    <div class="makeAccount">
+      <h1 style="color:rgb(252, 93, 96);">Shelter Sign Up</h1>
+      <br>
+      <input id="txtName" type="text" placeholder="Shelter Name">
+      <input id="txtEmail" type="email" placeholder="Email">
+      <input id="txtPassword" type="password" placeholder="Password">
+      <input id="phone" type="number" maxlength="10" placeholder="Phone Number">
+      <input id="acctManager" type="text" maxlength="50" placeholder="Account Manager's Name">
+      <input id="streetAddress" type="text" placeholder="Street Address">
+      <input id="city" type="text" placeholder="City">
+      <input id="zipCode" type="number" placeholder="Zip Code" maxlength="5">
+      <button id="btnSignUp" class="btn btn-primary btn-lg">Sign Up</button><br>
+    </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="../javascript/bootstrap.min.js"></script>
-  <script src="../javascript/makeAccount.js"></script>
+  <script src="../javascript/shelterSignUp.js"></script>
 
 </body>
-
 </html>
