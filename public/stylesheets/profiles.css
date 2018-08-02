@@ -1,0 +1,32 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+.uploadPhoto{
+  width:150px;
+  height:150px;
+  visibility: none;
+  color:white;
+}
+.profile_Image{
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  width:150px;
+  border-radius:50%;
+  border:solid;
+  height:150px;
+  margin-top:10%;
+}
+#username{
+  text-align:center;
+}
+#links{
+  text-align:center;
+}

@@ -1,3 +1,13 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 .topBar{
   display:inline;
   width:100%;
@@ -33,4 +43,40 @@
   bottom:0;
   left:0;
   color:white;
+}
+
+.icon-bar {
+    width: 100%;
+    background-color: white;
+    overflow: auto;
+    position:fixed;
+    bottom:0;
+    left:0;
+    border-top:1px lightgrey solid;
+}
+
+.icon-bar a {
+    float: left;
+    width:25%;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+    color:grey;
+}
+
+.icon-bar a:hover {
+}
+.account{
+  position:relative;
+  float:right;
+  top:27px;
+  right:30px;
+  font-size:36px;
+}
+
+a, a:hover{
+  text-decoration: none;
+  color: inherit;
 }
