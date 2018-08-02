@@ -13,6 +13,11 @@
     name=txtName.value;
     const email=txtEmail.value;
     const pass=txtPassword.value;
+    var db = firebase.firestore();
+    db.collection("Users").doc().set({
+      name: name,
+      email: email
+    })
     const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -34,9 +39,6 @@
       user.updateProfile({
         displayName: name
       }).then(function() {
-        user.updateProfile({
-          displayName: name
-        })
         window.location.replace("createEvents.html");
       }).catch(function(error) {
       });
