@@ -17,7 +17,7 @@ html, body {
 
 .shelterlinks{
   position:relative;
-  top:27px;
+  top:15px;
   left:20px;
   font-size:2.5em;
   height:40px;
@@ -27,9 +27,9 @@ html, body {
 .smallLogo{
   height:65px;
   width:65px;
-  position:absolute;
+  position:relative;
   top:10px;
-  left:46%;
+  left:17%;
 }
 
 .signout{
@@ -55,6 +55,7 @@ html, body {
     border-top:1px lightgrey solid;
     margin-top:30px;
     z-index:100;
+    text-rendering: auto;
 }
 
 .icon-bar a {
@@ -66,6 +67,7 @@ html, body {
     color: white;
     font-size: 36px;
     color:grey;
+    text-rendering: auto;
 }
 
 .icon-bar a:hover {
@@ -83,12 +85,14 @@ a, a:hover{
   color: inherit;
 }
 #myimg2{
-  position:absolute;
-  top:20px;
-  right:30px;
+  position:relative;
+  top:14px;
+  left:50%;
   text-align:center;
   width:50px;
   border-radius:50%;
   border:solid 1px;
   height:50px;
+  overflow-y:hidden;
+  overflow:hidden;
 }
