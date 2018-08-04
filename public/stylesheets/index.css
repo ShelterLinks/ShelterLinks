@@ -58,18 +58,21 @@ html, body {
     text-rendering: auto;
 }
 
-.icon-bar a {
+.icon-bar a{
     float: left;
     width:25%;
     text-align: center;
     padding: 12px 0;
     transition: all 0.3s ease;
-    color: white;
     font-size: 36px;
     color:grey;
     text-rendering: auto;
 }
-
+.icon-bar img{
+  height:50px;
+  width:50px;
+  color:black;
+}
 .icon-bar a:hover {
 }
 .account{
