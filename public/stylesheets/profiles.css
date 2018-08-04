@@ -8,20 +8,14 @@ html, body {
     height: 100%;
 }
 .uploadPhoto{
-  width:150px;
-  height:150px;
-  visibility: none;
-  color:white;
-}
-.profile_Image{
   position:relative;
   margin-left:auto;
   margin-right:auto;
   text-align:center;
-  width:150px;
+  width:200px;
   border-radius:50%;
   border:solid;
-  height:150px;
+  height:200px;
   margin-top:10%;
 }
 #username{
@@ -29,4 +23,14 @@ html, body {
 }
 #links{
   text-align:center;
+}
+#myimg{
+  position:absolute;
+  margin-left:37.5%;
+  text-align:center;
+  width:200px;
+  border-radius:50%;
+  border:solid;
+  height:200px;
+  margin-top:10%;
 }
