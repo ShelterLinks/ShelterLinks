@@ -46,13 +46,15 @@ html, body {
 }
 
 .icon-bar {
+    position:fixed;
     width: 100%;
     background-color: white;
-    overflow: auto;
-    position:fixed;
+    overflow:inherit;
     bottom:0;
     left:0;
     border-top:1px lightgrey solid;
+    margin-top:30px;
+    z-index:100;
 }
 
 .icon-bar a {
@@ -79,4 +81,14 @@ html, body {
 a, a:hover{
   text-decoration: none;
   color: inherit;
+}
+#myimg2{
+  position:absolute;
+  top:20px;
+  right:30px;
+  text-align:center;
+  width:50px;
+  border-radius:50%;
+  border:solid 1px;
+  height:50px;
 }

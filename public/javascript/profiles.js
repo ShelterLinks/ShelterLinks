@@ -1,31 +1,59 @@
-(function(){
+var storage = firebase.storage();
+var userdude;
 var db = firebase.firestore();
 var auth = firebase.auth();
-var username=document.getElementById("username");
-var name, email, photoUrl, uid, emailVerified;
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    name=auth.currentUser.displayName;
-    email = user.email;
-    console.log(name);
-    console.log(name.length);
-    db.collection("Users").where("name", "==",name)
-    .get()
-    .then(function(querySnapshot) {
+(function(){
+  var username=document.getElementById("username");
+  var name, email, photoUrl, uid, emailVerified;
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      name=auth.currentUser.displayName;
+      email = user.email;
+      var img = document.getElementById('myimg');
+      img.src = user.photoURL;
+      var img2 = document.getElementById('myimg2');
+      img2.src = user.photoURL;
+      db.collection("Users").where("name", "==",name)
+      .get()
+      .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           var ourData=doc.data();
           username.innerHTML=name;
         });
-    })
-    .catch(function(error) {
+      })
+      .catch(function(error) {
         console.log("Error getting documents: ", error);
-    });
-  } else {
-    console.log("dude");
-  }
-});
+      });
+    } else {
+      console.log("boi");
+    }
+  });
 }());
-
-$("input[type='image']").click(function() {
-    $("input[id='my_file']").click();
+var uploader=document.getElementById("fileUpload");
+fileUpload.addEventListener('change',function(e){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      name=auth.currentUser.displayName;
+      userdude = firebase.auth().currentUser;
+    } else {
+      console.log("boi");
+    }
+  });
+  var file=e.target.files[0];
+  var UserName="/"+name+"/";
+  var stored='UserPictures/' +UserName+ file.name;
+  var storageRef =storage.ref(stored);
+  storageRef.put(file).then(function(snapshot) {
+    storageRef.getDownloadURL().then(function(url) {
+      userdude.updateProfile({
+        photoURL: url
+      }).then(function() {
+        location.reload();
+      }).catch(function(error) {
+        console.log(error);
+      })
+    }).catch(function(error) {
+      console.log(error);
+    });
+  })
 });
