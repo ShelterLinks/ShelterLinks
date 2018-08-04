@@ -13,8 +13,11 @@ var db = firebase.firestore();
         value:doc.data()
       });
       var date=doc.data().date;
+      var location = doc.data().location;
+      var locationURL = encodeURI(location);
       var counter=0;
       $("#events").append("<div class=\"myEvent\"><div class=\"insertedEvent\"><a class=\"eventsLink\">"+
+      "<img class=\"eventImage\" src=\"https://maps.googleapis.com/maps/api/staticmap?"+ "center=" + locationURL + "&size=1024x250&zoom=13&markers=red" + "&key=AIzaSyCQgxFBpg7lC0ij4Z_q-kSG9M11W58wof0\" alt=\"Map Location\">" +
       "<h2 class=\"eventOrg\">"+doc.data().organization+"</h2>"+
       "<br><h6 class=\"eventName\">Type: "+doc.data().name+" </h6>"+
       "<h6 class=\"eventTime\"> Date: "+date+"</h6>"+
