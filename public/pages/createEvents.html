@@ -28,7 +28,7 @@
   <div class="signout"><button id="btnSignOut" class="btn btn-primary btn-lg">Sign Out</button></div>
   <div class="eventsPage"><button id="" class="btn btn-primary btn-lg"><a href="eventsPage.html" style="color:white;">Events</a></button></div>
   <div class="creator">
-    <div class="container ">
+    <div class="container">
       <br>
       <img src="../images/imageUpload.png" id="myimg"/>
       <form>
@@ -93,7 +93,7 @@
             <input class="form-control" type="number" placeholder="Minimum Age Requirement" id="minAge">
           </div>
           <div class="form-group col-md-6">
-            <label for="numOfVolunteers">Number Of Volunteers <div class="form-check">
+            <label for="numOfVolunteers">Volunteers Needed <div class="form-check">
               <input class="form-check-input" type="checkbox" id="noCap">
               <label class="form-check-label" for="noCap">
                 No Cap
@@ -129,10 +129,23 @@
           <label class="form-check-label" for="1day">Single Day</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="boi" value="option3">
+          <input class="form-check-input" type="checkbox" id="boi" value="option4">
           <label class="form-check-label" for="boi">Continuing</label>
-        </div><br>
-        <br>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="donations" value="option5">
+          <label class="form-check-label" for="donations">Donations</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="Drive" value="option6">
+          <label class="form-check-label" for="Drive">Drive</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="teens" value="option6">
+          <label class="form-check-label" for="teens">For Teens</label>
+        </div>
+
+        <br><br>
         <h4>Organizer Information </h4>
         <div class="form-group row">
           <label for="organizerName" class="col-sm-2 col-form-label">Organizer</label>
@@ -151,7 +164,7 @@
           </div>
         </div>
         <div class="custom-file">
-          <input type="file" class="custom-file-input" accept=".pdf" id="paperwork">
+          <input type="file" class="custom-file-input" accept="image/*;capture=camera" id="paperwork">
           <label class="custom-file-label" for="customFile">Paperwork For Volunteers (pdf)</label>
         </div>
         <h6 id="fileUploaded">File Uploaded : </h6>
