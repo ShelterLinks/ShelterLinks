@@ -6,9 +6,7 @@
   const shelterSignUpElement = document.getElementById("shelterSignUp");
   const auth=firebase.auth();
   var name;
-  shelterSignUpElement.addEventListener("click", e => {
-    window.location.replace("shelterSignUp.html");
-  });
+
   btnSignUp.addEventListener('click',e => {
     name=txtName.value;
     const email=txtEmail.value;

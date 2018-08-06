@@ -13,17 +13,8 @@ var auth = firebase.auth();
       img.src = user.photoURL;
       var img2 = document.getElementById('myimg2');
       img2.src = user.photoURL;
-      db.collection("Users").where("name", "==",name)
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          var ourData=doc.data();
-          username.innerHTML=name;
-        });
-      })
-      .catch(function(error) {
-        console.log("Error getting documents: ", error);
-      });
+      username.innerHTML=name;
+
     } else {
       console.log("boi");
     }
