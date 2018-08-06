@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.shelterlinks.shelterlinks" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="https://phonegap.com/ns/1.0">
+	<name>ShelterLinks</name>
+	<description>
+
+	</description>
+
+	<author email="shelterlinksapp@gmail.com" href="https://phonegap.com">
+	  	ShelterLinks Team
+	</author>
+
+	  <preference name="phonegap-version" value="cli-8.0.0" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+</widget>
