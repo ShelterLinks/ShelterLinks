@@ -10,8 +10,9 @@
   const btnSignUp=document.getElementById('btnSignUp');
   const auth=firebase.auth();
   var name;
+
   btnSignUp.addEventListener('click',e => {
-    const name = txtName.value;
+    name = txtName.value;
     const email = txtEmail.value;
     const pass = txtPassword.value;
     const phone = phoneNumberElement.value;
@@ -26,6 +27,7 @@
       city: city,
       manager: manager,
       zip: zip,
+      email:email,
       phone: phone
     })
     const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
@@ -45,16 +47,14 @@
       }
       console.log(error);
       promise.catch(e=>console.log(e.message));
-    })});
+    })
+  });
   firebase.auth().onAuthStateChanged(firebaseUser=>{
     if (firebaseUser){
       const user = auth.currentUser;
       user.updateProfile({
         displayName: name
       }).then(function() {
-        user.updateProfile({
-          displayName: name
-        })
         window.location.replace("createEvents.html");
       }).catch(function(error) {
       });
