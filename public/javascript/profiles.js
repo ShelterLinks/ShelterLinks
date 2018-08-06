@@ -10,9 +10,14 @@ var auth = firebase.auth();
       name=auth.currentUser.displayName;
       email = user.email;
       var img = document.getElementById('myimg');
-      img.src = user.photoURL;
       var img2 = document.getElementById('myimg2');
-      img2.src = user.photoURL;
+      if(user.photoURL==null){
+        img.src = "../images/white.png";
+        img2.src="../images/white.png";
+      }else{
+        img.src = user.photoURL;
+        img2.src = user.photoURL;
+      }
       username.innerHTML=name;
 
     } else {

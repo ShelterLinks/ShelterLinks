@@ -5,7 +5,11 @@
     if (user) {
       name=auth.currentUser.displayName;
       var img2 = document.getElementById('myimg2');
-      img2.src = user.photoURL;
+      if(user.photoURL==null){
+        img2.src="../images/white.png";;
+      }else{
+        img2.src = user.photoURL;
+      }
     }else {
         console.log("boi");
       }
