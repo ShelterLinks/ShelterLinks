@@ -1,3 +1,13 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 .topBar{
   display:inline;
   width:100%;
@@ -7,7 +17,7 @@
 
 .shelterlinks{
   position:relative;
-  top:27px;
+  top:15px;
   left:20px;
   font-size:2.5em;
   height:40px;
@@ -17,9 +27,9 @@
 .smallLogo{
   height:65px;
   width:65px;
-  position:absolute;
+  position:relative;
   top:10px;
-  left:46%;
+  left:17%;
 }
 
 .signout{
@@ -33,4 +43,59 @@
   bottom:0;
   left:0;
   color:white;
+}
+
+.icon-bar {
+    position:fixed;
+    width: 100%;
+    background-color: white;
+    overflow:inherit;
+    bottom:0;
+    left:0;
+    border-top:1px lightgrey solid;
+    margin-top:30px;
+    z-index:100;
+    text-rendering: auto;
+}
+
+.icon-bar a{
+    float: left;
+    width:25%;
+    text-align: center;
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    font-size: 36px;
+    color:grey;
+    text-rendering: auto;
+}
+.icon-bar img{
+  height:50px;
+  width:50px;
+  color:black;
+}
+.icon-bar a:hover {
+}
+.account{
+  position:relative;
+  float:right;
+  top:27px;
+  right:30px;
+  font-size:36px;
+}
+
+a, a:hover{
+  text-decoration: none;
+  color: inherit;
+}
+#myimg2{
+  position:relative;
+  top:14px;
+  left:50%;
+  text-align:center;
+  width:50px;
+  border-radius:50%;
+  border:solid 1px;
+  height:50px;
+  overflow-y:hidden;
+  overflow:hidden;
 }
