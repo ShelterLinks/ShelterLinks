@@ -6,61 +6,97 @@
 html, body {
     width: 100%;
     height: 100%;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    background-color: rgb(245, 245, 245);
 }
 
 #events{
   margin-top:5px;
   margin-bottom:8vh;
 }
-.myEvent{
-  width:100%;
-  border:1px solid;
+.dataTable {
+  position: relative;
+  left: 5%;
+  right: 5%;
+}
+.myEvent {
+  width: 99%;
   border-radius:15px;
-  margin-top:2px;
-  margin-bottom:2px;
+  margin: 5px;
   text-decoration: none;
   color: inherit;
-
+  background-color: white;
+  box-shadow: 0px 2px 4px 0px black;
+}
+.eventInformation {
+  position: relative;
+  overflow-x: scroll;
+  overflow: scroll;
+  width: 75%;
+}
+.eventImageDiv {
+  position: relative;
+  width: 100%;
+  max-height: 400px;
+  margin-bottom: 1%;
+  overflow: hidden;
 }
 .eventImage {
   height: auto;
   width: 100%;
-  border-radius: 2px;
+  border-radius: 15px 15px 0px 0px;
 }
-.eventTime{
-  /* display:inline; */
-  position:relative;
-  text-align:center;
-  top:0%;
-  left:50%;
+.eventName {
+  position: relative;
+  text-align: left;
+  margin: 0px;
+  top: 5%;
+  overflow-x: scroll;
 }
-.eventName{
-  /* display:inline; */
-  position:relative;
-  text-align:left;
-  left:50%;
-}
-.eventOrg{
+.eventOrg {
   position:relative;
   text-align: left;
-  font-size: 3em;
-  left:5%;
-  right: 50%;
-  top:10px;
+  text-decoration: underline;
 }
-.eventVolunteers{
+.eventTime{
+  position:relative;
+  text-align: left;
+}
+.eventVolunteers {
   position: relative;
-  color: white;
-  margin-top:20px;
-  background-color: #af0710;
-  text-align:right;
-  padding-bottom:20px;
-  top: 0%;
-  right: 0%;
-  left:75%;
+  text-align: center;
+  width: 25%;
 }
-
+#volunteerNum {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  font-size: 3em;
+}
+.tagsDiv {
+  position: relative;
+  height: 30px;
+  width: 90%;
+  left: 5%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.eventTagTable {
+  width: 100%;
+  overflow-x: scroll;
+}
+.eventTag {
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 15px;
+  background-color: #af0710;
+  color: white;
+  width: 500px;
+}
 .eventsLink{
   text-decoration: none;
   color: inherit;
