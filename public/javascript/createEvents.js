@@ -104,6 +104,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var startDate=startDateTimes.substring(5,7)+"/"+startDateTimes.substring(8,10)+"/"+startDateTimes.substring(0,4)
     var startTime=startDateTimes.substring(11);
     db.collection("Events").doc().set({
+      name:names,
       organization: org,
       description:descriptions,
       address:addresses,
