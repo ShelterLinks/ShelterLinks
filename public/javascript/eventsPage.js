@@ -8,7 +8,7 @@ var db = firebase.firestore();
       name=auth.currentUser.displayName;
       var img2 = document.getElementById('myimg2');
       if(user.photoURL==null){
-        img2.src="../images/white.png";;
+        img2.src="../images/white.png";
       }else{
         img2.src = user.photoURL;
       }
