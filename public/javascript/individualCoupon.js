@@ -56,6 +56,7 @@ firebase.auth().onAuthStateChanged(function(user) {
               points:currentSheltercoins
             })
             .then(function() {
+              console.log(cordova.plugins.barcodeScanner.scan)
             })
             .catch(function(error) {
               console.log("Error getting documents: ", error);
@@ -66,9 +67,6 @@ firebase.auth().onAuthStateChanged(function(user) {
                 "Result: " + result.text + "\n" +
                 "Format: " + result.format + "\n" +
                 "Cancelled: " + result.cancelled);
-                if (result.text=="ShelterLinks Redemption"){
-                  alert("YESSSSSSSSSSS");
-                }
               },
               function (error) {
                 alert("Scanning failed: " + error);
