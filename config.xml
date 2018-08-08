@@ -10,8 +10,10 @@
 	</author>
 
 	  <preference name="phonegap-version" value="cli-8.0.0" />
+    <plugin name="phonegap-plugin-barcodescanner" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
+    
 </widget>
