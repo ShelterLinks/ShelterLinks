@@ -14,7 +14,8 @@
     var db = firebase.firestore();
     db.collection("Users").doc().set({
       name: name,
-      email: email
+      email: email,
+      points: 0
     })
     const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
       // Handle Errors here.

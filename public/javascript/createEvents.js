@@ -100,10 +100,15 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (!(endTime=="Ongoing")){
       endDate=endDateTimes.substring(5,7)+"/"+endDateTimes.substring(8,10)+"/"+endDateTimes.substring(0,4)
       endTime=endDateTimes.substring(11);
+      endTime=timeConverter(endTime);
+      console.log(endTime);
     }
     var startDate=startDateTimes.substring(5,7)+"/"+startDateTimes.substring(8,10)+"/"+startDateTimes.substring(0,4)
     var startTime=startDateTimes.substring(11);
+    startTime=timeConverter(startTime);
+    console.log(startTime);
     db.collection("Events").doc().set({
+      name:names,
       organization: org,
       description:descriptions,
       address:addresses,
@@ -157,3 +162,17 @@ paperwork.addEventListener('change',function(e){
     });
   })
 });
+function timeConverter(time){
+  var firstPart=parseInt(time.substring(0,2));
+  if ((firstPart<12)&&(firstPart>0)){
+    time+="AM";
+  }else if(firstPart==0){
+    time=12+time.substring(2)+"AM";
+  }else if(firstPart==12){
+    time+="PM";
+  }else{
+    var firstPart=firstPart-12;
+    time=firstPart+time.substring(2)+"PM";
+  }
+  return time;
+}
