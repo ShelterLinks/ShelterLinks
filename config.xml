@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.shelterlinks.shelterlinks" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="https://phonegap.com/ns/1.0">
+<config-file target="AndroidManifest.xml" parent="/*" mode="merge">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+</config-file>	
 	<name>ShelterLinks</name>
 	<description>
 
@@ -12,6 +17,7 @@
 	  <preference name="phonegap-version" value="cli-8.0.0" />
       <plugin name="phonegap-plugin-barcodescanner" spec="8.0.0"/>
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+	
     <access origin="*" />
     <allow-navigation href="*" />
     <allow-intent href="*" />
