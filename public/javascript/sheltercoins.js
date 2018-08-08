@@ -1,5 +1,7 @@
+
 var couponRedirect;
 var names=[];
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     name=auth.currentUser.displayName;
@@ -23,7 +25,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     querySnapshot.forEach(function(doc) {
       points=doc.data().points;
       sheltercoins.innerHTML=points;
+
       sheltercoinsNeeded.innerHTML=300-(points%300);
+
     });
   })
   .catch(function(error) {
@@ -69,4 +73,5 @@ firebase.auth().onAuthStateChanged(function(user) {
       })
   }
   });
+
 }());

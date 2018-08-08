@@ -27,13 +27,46 @@ var db = firebase.firestore();
         key:doc.id,
         value:doc.data()
       });
-      var date=doc.data().date;
+      var name = doc.data().name;
+
+      var startDate = doc.data().startDate;
+      var endDate = doc.data().endDate;
+      var startTime = doc.data().startTime;
+      var endTime = doc.data().endTime;
+      var dateString = "";
+
+      if(startDate == endDate) {
+        dateString = startDate + " " + startTime + " - " + endTime;
+      } else if (endDate == "Ongoing" || endTime == "Ongoing") {
+        dateString = startDate + " " + startTime + " - Ongoing" ;
+      } else if (endDate != startDate) {
+        dateString = startDate + " - " + endDate + " | " + startTime + " - " + endTime;
+      }
+      var location = doc.data().location;
+      var locationURL = encodeURI(location);
+      var imageSrc = "";
+      if(doc.data().imagePath == null) {
+        imageSrc = "https://maps.googleapis.com/maps/api/staticmap?"+ "center=" + locationURL + "&size=1024x250&zoom=13&markers=red" + "&key=AIzaSyCQgxFBpg7lC0ij4Z_q-kSG9M11W58wof0";
+      } else {
+        imageSrc = doc.data().imagePath;
+      }
+      var volunteers = doc.data().numOfVolunteer;
+      var organization = doc.data().organization;
       var counter=0;
+      var tagString = "";
+      doc.data().tags.forEach(function(tag) {
+        tagString += "<td class=\"eventTag\">" + tag +"</td>";
+      });
       $("#events").append("<div class=\"myEvent\"><div class=\"insertedEvent\"><a class=\"eventsLink\">"+
-      "<h2 class=\"eventOrg\">"+doc.data().organization+"</h2>"+
-      "<br><h6 class=\"eventName\">Type: "+doc.data().name+" </h6>"+
-      "<h6 class=\"eventTime\"> Date: "+date+"</h6>"+
-      "<br><h6 class=\"eventVolunteers\">Volunteer Spots Remaining: "+doc.data().numOfVolunteers+"</h6></a><div>")
+      "<div class=\"eventImageDiv\"><img class=\"eventImage\" src=\"" + imageSrc + "\" alt=\"Map Location\"></div>" +
+      "<table class=\"dataTable\"><tr><td class=\"eventInformation\">" +
+      "<h1 class=\"eventName\">" + name + "</h1>" +
+      "<h4 class=\"eventOrg\">"+ organization +"</h2>"+
+      "<h6 class=\"eventTime\">"+ dateString +"</h6></td>" +
+      "<td class=\"eventVolunteers\"><span id=\"volunteerNum\">" + volunteers + "</span><br>Volunteers Needed</td>" +
+      "</tr></table>" +
+      "<div class=\"tagsDiv\"><table class=\"eventTagTable\"><tr class=\"eventTagTable\">" + tagString + "</tr></table></div>"+
+      "</a><br><div>")
       counter++;
     });
   })
