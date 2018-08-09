@@ -1,4 +1,5 @@
 var data=[];
+var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var db = firebase.firestore();
 (function(){
   var auth = firebase.auth();
@@ -30,7 +31,6 @@ var db = firebase.firestore();
       var name = doc.data().name;
       var startDate = doc.data().startDate;
       var day = new Date(startDate);
-      var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
       var dayOfWeek =day.getDay();
       dayOfWeek=days[dayOfWeek];
       var months=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
@@ -72,16 +72,16 @@ var db = firebase.firestore();
       doc.data().tags.forEach(function(tag) {
         tagString += "<span class=\"eventTag\"> " + tag +" </span>";
       });
-      $("#events").append("<div class=\"myEvent\"><div class=\"insertedEvent\"><a class=\"eventsLink\">"+
-      "<h5 class=\"eventInformation\">" +
+      $("#events").append("<div class=\"myEvent\" ><div class=\"insertedEvent\"><a class=\"eventsLink\" id=\""+organization+"\">"+
+      "<div class=\"eventInformation\"id=\""+organization+"\">" +
       "<div class=\"eventImageDiv\"><img class=\"eventImage\" src=\"" + imageSrc + "\" alt=\"Map Location\"></div>" +
       "<div class=\"inlineboi\"><img class=\"shelterImage\" src=\"\"/>"+
       "<h1 class=\"eventName\">" + name + "</h1>" +
-      "<h6 class=\"eventTime\">"+ dateString +" in "+borough+"</h6></div>" +
+      "<h6 class=\"eventTime\">"+ dateString +" in "+borough+"<span class=\"nope\">"+startDate+"</span></h6>" +
       "<h4 class=\"eventOrg\">Hosted by: "+ organization +"</h2>"+
-      "<h3 class=\"easyDate\">"+month+"<br>"+day+"</h3>"+
+      "<h3 class=\"easyDate\">"+month+"<br>"+day+"</h3></div>"+
       "<h5 class=\"eventVolunteers\">Volunteer Spots Left: " + numOfVolunteerRemaining + "</h5>"+
-      "<div class=\"tags\">"+tagString+"<div>")
+      "<div class=\"tags\">"+tagString+"</div></div>")
       counter++;
     });
   })
@@ -91,17 +91,20 @@ var db = firebase.firestore();
 
 
   document.onclick = function(event) {
-    var target = $(event.target).parent();
-    var info=target[0].innerText+"";
-    console.log(target[0].innerText);
-    var orgName=info.substring(0,info.indexOf("Type")-2).replace(/\s\s+/g, ' ');
-    var orgType=info.substring(info.indexOf("Type")+6,info.indexOf("Date")-1).replace(/\s\s+/g, ' ');
-    var orgDate=info.substring(info.indexOf("Date")+6,info.indexOf("Volunteer")-1).replace(/\s\s+/g, ' ');
-    console.log(orgName);
-    console.log(orgType);
-    console.log(orgDate);
-
-    db.collection("Events").where("organization", "==", orgName).where("date", "==", orgDate).where("name", "==", orgType)
+    var target = $(event.target.parentElement.parentElement);
+    var target2 = $(event.target.parentElement);
+    var data=target[0].innerHTML;
+    var eventNamed=data.substring(data.indexOf("eventName")+11,data.indexOf("<",data.indexOf("eventName")+11));
+    var startDatee=data.substring(data.indexOf("nope")+6,data.indexOf("<",data.indexOf("nope")+7));
+    var timed=data.indexOf("eventTime");
+    var timeds=data.indexOf(",",timed+1);
+    var startTimed=data.substring(timeds+2,(data.indexOf("-",timed+1))-1).replace(" ","");
+    var organization=target[0].id;
+    console.log(startTimed);
+    console.log(organization);
+    console.log(eventNamed);
+    console.log(startDatee);
+    db.collection("Events").where("organization", "==", organization).where("startDate", "==",startDatee).where("startTime", "==", startTimed).where("name", "==", eventNamed)
     .get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {

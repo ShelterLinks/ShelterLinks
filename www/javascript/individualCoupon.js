@@ -1,5 +1,6 @@
 var currentSheltercoins;
 var couponRedirect;
+var company;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     name=auth.currentUser.displayName;
@@ -22,8 +23,10 @@ firebase.auth().onAuthStateChanged(function(user) {
   .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       var ourData=doc.data();
+      company=ourData.business;
       $("#couponInfo").append("<img class=\"couponImage\" src=\""+ourData.image+"\"><h1 class=\"couponName\">"+ourData.business+"</h1><h2 class=\"couponDescription\">"+ourData.description+
       "<br><a id=\"couponRedirect\" class=\"btn btn-primary redeem\" href=\"#\" role=\"button\">Open QR Scanner</a>"+
+      "<a id=\"maps\" class=\"btn btn-primary map\" href=\"https://www.google.com/maps/search/?api=1&query="+company+"\" role=\"button\">Open in Maps</a>"+
       "<h5 id=\"redeemHead\">REDEEMING YOUR COUPON WITH SHELTERCOINS IS SIMPLE:</h5>"+
       "<ol id=\"directions\">"+
       "<li>After choosing the coupon that you want to redeem, go to the business associated with the coupon.</li>"+
@@ -49,41 +52,41 @@ firebase.auth().onAuthStateChanged(function(user) {
           currentSheltercoins=doc.data().points;
           console.log(currentSheltercoins);
           if(currentSheltercoins<300){
-            alert("Wtf dude you dont have enough points");
+            alert("Sorry, you do not have enough points to redeem this coupon.");
           }else{
-            currentSheltercoins-=300;
-            return db.collection("Users").doc(doc.id).update({
-              points:currentSheltercoins
-            })
-            .then(function() {
-              cordova.plugins.barcodeScanner.scan(
-                function (result) {
-                  alert("We got a barcode\n" +
-                  "Result: " + result.text + "\n" +
-                  "Format: " + result.format + "\n" +
-                  "Cancelled: " + result.cancelled);
-                },
-                function (error) {
-                  alert("Scanning failed: " + error);
-                },
-                {
-                  preferFrontCamera : true, // iOS and Android
-                  showFlipCameraButton : true, // iOS and Android
-                  showTorchButton : true, // iOS and Android
-                  torchOn: true, // Android, launch with the torch switched on (if available)
-                  saveHistory: true, // Android, save scan history (default false)
-                  prompt : "Place a barcode inside the scan area", // Android
-                  resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                  formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-                  orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
-                  disableAnimations : true, // iOS
-                  disableSuccessBeep: false // iOS and Android
+            cordova.plugins.barcodeScanner.scan(
+              function (result) {
+                var correctCode="ShelterLinks Redemption: "+company;
+                if (result.text==correctCode){
+                  currentSheltercoins-=300;
+                  return db.collection("Users").doc(doc.id).update({
+                    points:currentSheltercoins,
+                    isRedeemed:true
+                  })
+                  .then(function() {
+                    alert("Yes! It Works!")
+                  })
+                }else{
+                  alert("This is not the correct QR code, or you are using the incorrect QR scanner")
                 }
-              );
-            })
-            .catch(function(error) {
-              console.log("Error getting documents: ", error);
-            });
+              },
+              function (error) {
+                alert("Scanning failed: " + error);
+              },
+              {
+                preferFrontCamera : true, // iOS and Android
+                showFlipCameraButton : true, // iOS and Android
+                showTorchButton : true, // iOS and Android
+                torchOn: true, // Android, launch with the torch switched on (if available)
+                saveHistory: true, // Android, save scan history (default false)
+                prompt : "Place a barcode inside the scan area", // Android
+                resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                formats : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+                orientation : "landscape", // Android only (portrait|landscape), default unset so it rotates with the device
+                disableAnimations : true, // iOS
+                disableSuccessBeep: false // iOS and Android
+              }
+            );
           }
         });
       })
