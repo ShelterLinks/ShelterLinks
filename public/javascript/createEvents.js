@@ -120,6 +120,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       endTime:endTime,
       minAge:ages,
       numOfVolunteer:numOfVolunteer,
+      numOfVolunteerRemaining:numOfVolunteer,
       requirements:requirements,
       duties:duties,
       volunteersGoing:[],

@@ -29,25 +29,26 @@
       zip: zip,
       email:email,
       phone: phone
-    })
-    const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
-      } else if(errorCode=='auth/invalid-email'){
-        alert('The email is invalid')
-      } else if (zip.length != 4){
-        alert("Please input a valid Zip Code");
-      } else if (phone != 10) {
-        alert("Please input a Valid Phone Number (do not include dashes!)");
-      } else {
-        alert(errorMessage)
-      }
-      console.log(error);
-      promise.catch(e=>console.log(e.message));
-    })
+    }).then(function() {
+      const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else if(errorCode=='auth/invalid-email'){
+          alert('The email is invalid')
+        } else if (zip.length != 4){
+          alert("Please input a valid Zip Code");
+        } else if (phone != 10) {
+          alert("Please input a Valid Phone Number (do not include dashes!)");
+        } else {
+          alert(errorMessage)
+        }
+        console.log(error);
+        promise.catch(e=>console.log(e.message));
+      })
+    });
   });
   firebase.auth().onAuthStateChanged(firebaseUser=>{
     if (firebaseUser){

@@ -13,9 +13,9 @@ var db = firebase.firestore();
         img2.src = user.photoURL;
       }
     }else {
-        console.log("boi");
-      }
-    });
+      console.log("boi");
+    }
+  });
 
   db.collection("Events").where("isOn", "==", false)
   .get()
@@ -28,25 +28,40 @@ var db = firebase.firestore();
         value:doc.data()
       });
       var name = doc.data().name;
-
       var startDate = doc.data().startDate;
+      var day = new Date(startDate);
+      var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      var dayOfWeek =day.getDay();
+      dayOfWeek=days[dayOfWeek];
+      var months=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+      var month = day.getMonth();
+      month=months[month];
+      var day = startDate.substring(3,5);
+      if (day.indexOf("0")==0){
+        day=day.substring(1);
+      }
       var endDate = doc.data().endDate;
       var startTime = doc.data().startTime;
       var endTime = doc.data().endTime;
+      var borough=doc.data().borough;
+      var numOfVolunteerRemaining=doc.data().numOfVolunteerRemaining;
+      if (borough=="Bronx"){
+        borough="the Bronx";
+      }
       var dateString = "";
 
       if(startDate == endDate) {
-        dateString = startDate + " " + startTime + " - " + endTime;
+        dateString = dayOfWeek + ", " + startTime + " - " + endTime;
       } else if (endDate == "Ongoing" || endTime == "Ongoing") {
-        dateString = startDate + " " + startTime + " - Ongoing" ;
+        dateString = dayOfWeek + ", " + startTime + " - Ongoing" ;
       } else if (endDate != startDate) {
-        dateString = startDate + " - " + endDate + " | " + startTime + " - " + endTime;
+        dateString = dayOfWeek + " - " + endDate + " | " + startTime + " - " + endTime;
       }
       var location = doc.data().location;
       var locationURL = encodeURI(location);
       var imageSrc = "";
       if(doc.data().imagePath == null) {
-        imageSrc = "https://maps.googleapis.com/maps/api/staticmap?"+ "center=" + locationURL + "&size=1024x250&zoom=13&markers=red" + "&key=AIzaSyCQgxFBpg7lC0ij4Z_q-kSG9M11W58wof0";
+        imageSrc = "https://maps.googleapis.com/maps/api/staticmap?"+ "center=" + locationURL + "&size=1024x250&markers=red" + "&key=AIzaSyCQgxFBpg7lC0ij4Z_q-kSG9M11W58wof0";
       } else {
         imageSrc = doc.data().imagePath;
       }
@@ -55,18 +70,18 @@ var db = firebase.firestore();
       var counter=0;
       var tagString = "";
       doc.data().tags.forEach(function(tag) {
-        tagString += "<td class=\"eventTag\">" + tag +"</td>";
+        tagString += "<span class=\"eventTag\"> " + tag +" </span>";
       });
       $("#events").append("<div class=\"myEvent\"><div class=\"insertedEvent\"><a class=\"eventsLink\">"+
+      "<h5 class=\"eventInformation\">" +
       "<div class=\"eventImageDiv\"><img class=\"eventImage\" src=\"" + imageSrc + "\" alt=\"Map Location\"></div>" +
-      "<table class=\"dataTable\"><tr><td class=\"eventInformation\">" +
+      "<div class=\"inlineboi\"><img class=\"shelterImage\" src=\"\"/>"+
       "<h1 class=\"eventName\">" + name + "</h1>" +
-      "<h4 class=\"eventOrg\">"+ organization +"</h2>"+
-      "<h6 class=\"eventTime\">"+ dateString +"</h6></td>" +
-      "<td class=\"eventVolunteers\"><span id=\"volunteerNum\">" + volunteers + "</span><br>Volunteers Needed</td>" +
-      "</tr></table>" +
-      "<div class=\"tagsDiv\"><table class=\"eventTagTable\"><tr class=\"eventTagTable\">" + tagString + "</tr></table></div>"+
-      "</a><br><div>")
+      "<h6 class=\"eventTime\">"+ dateString +" in "+borough+"</h6></div>" +
+      "<h4 class=\"eventOrg\">Hosted by: "+ organization +"</h2>"+
+      "<h3 class=\"easyDate\">"+month+"<br>"+day+"</h3>"+
+      "<h5 class=\"eventVolunteers\">Volunteer Spots Left: " + numOfVolunteerRemaining + "</h5>"+
+      "<div class=\"tags\">"+tagString+"<div>")
       counter++;
     });
   })
