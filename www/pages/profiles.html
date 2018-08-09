@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title> ShelterLinks </title>
+  <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="../stylesheets/profiles.css" type="text/css"/>
+  <link rel="stylesheet" href="../stylesheets/index.css" type="text/css"/>
+  <link rel="stylesheet" href="../stylesheets/all.css" type="text/css"/>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDX1MrTkc1RGlOuOmKT_tIcchEXo2b9rp8",
+    authDomain: "shelterlinks-39c9a.firebaseapp.com",
+    databaseURL: "https://shelterlinks-39c9a.firebaseio.com",
+    projectId: "shelterlinks-39c9a",
+    storageBucket: "shelterlinks-39c9a.appspot.com",
+    messagingSenderId: "138981597567"
+  };
+  firebase.initializeApp(config);
+  </script>
+  <body>
+  <div class="d-inline-block topBar">
+    <img class="shelterlinks" src="../images/shelterlinks.png"/>
+    <img class="smallLogo" src="../images/smallLogo.png"/>
+    <a href="profiles.html"><img src="../images/white.png" id="myimg2"/></a>
+  </div>
+  <img src="../images/white.png" id="myimg"/>
+    <form>
+      <div class="form-group">
+        <input name="userfile" type="file" accept="image/*" class="form-control-file uploadPhoto" alt="hi" style="opacity:0;" id="fileUpload"/>
+      </div>
+    </form>
+    <a href="userProfileSettings.html"><img src="../images/settings.png" class="settings"/></a>
+  <br>
+  <h1 id="username"></h1>
+  <br><br>
+  <h4 class="eventsSigned">Events you signed up for</h4>
+  <hr><br><br><br><br><br><br><br>
+
+  <h4 class="eventsSigned">Your Links</h4>
+  <hr><br><br><br><br><br><br><br>
+  <hr>
+
+  <div class="signout"><button id="btnSignOut" class="btn btn-primary btn-lg">Sign Out</button></div>
+  <div class="icon-bar">
+    <a href="#"><i class="fas fa-home"></i></a>
+    <a href="eventsPage.html"><i class="fa fa-calendar"></i></a>
+    <a href="individualCoupon.html"><i class="fas fa-link"></i></a>
+    <a href="#"><i class="fas fa-donate"></i></a>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="../javascript/bootstrap.min.js"></script>
+  <script src="../javascript/profiles.js"></script>
+  <script src="../javascript/index.js"></script>
+
+</body>
+</html>
