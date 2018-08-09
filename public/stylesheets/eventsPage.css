@@ -12,7 +12,7 @@ html, body {
 
 #events{
   margin-top:5px;
-  margin-bottom:8vh;
+  margin-bottom:9.5vh;
 }
 .dataTable {
   position: relative;
@@ -29,7 +29,7 @@ html, body {
   margin-right:auto;
   margin-top:20px;
   border-radius: 15px 15px 15px 15px;
-  height:550px;
+  height:565px;
 }
 .eventInformation {
   position: relative;
@@ -151,6 +151,7 @@ a:hover{
   width: 95%;
   height:100px;
   margin-right:10px;
+  margin-bottom:20px;
 }
 .tags{
   position:relative;
@@ -160,4 +161,5 @@ a:hover{
   text-align:left;
   top:465px;
   color:black;
+
 }
