@@ -48,6 +48,7 @@ html, body {
   background-color:#AF0710;
   font-size:24px;
   border:none !important;
+  margin-right:10px;
 }
 #couponInfo{
 }
@@ -61,4 +62,14 @@ html, body {
 }
 #termsServed{
   margin-bottom:100px !important;
+}
+
+#maps{
+  margin-top:20px;
+  margin-bottom:20px;
+  width:225px !important;
+  background-color:#AF0710;
+  font-size:24px;
+  border:none !important;
+  margin-left:10px;
 }
