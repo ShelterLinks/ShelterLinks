@@ -16,20 +16,21 @@
       name: name,
       email: email,
       points: 0
-    })
-    const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
-      } else if(errorCode=='auth/invalid-email'){
-        alert('The email is invalid')
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      promise.catch(e=>console.log(e.message));
+    }).then(function(){
+      const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else if(errorCode=='auth/invalid-email'){
+          alert('The email is invalid')
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+        promise.catch(e=>console.log(e.message));
+      });
     });
   });
   firebase.auth().onAuthStateChanged(firebaseUser=>{
