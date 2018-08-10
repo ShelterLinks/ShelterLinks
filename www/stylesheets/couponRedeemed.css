@@ -11,33 +11,33 @@ html, body {
 .redeemedHeading{
   font-size:50px;
   text-align:center;
-  font-family: 'Shadows Into Light', cursive;
-  letter-spacing: 5px;
+  font-family: 'Shadows+Into+Light', cursive;
+  letter-spacing: 2px;
   font-weight:bolder;
   padding-top:20px;
   color:black;
 }
 .couponImage{
-  width:85%;
+  width:80%;
   margin-left:10%;
   margin-right:auto;
   margin-top:30px;
   height:200px;
 }
 .shelterlinkLogo{
-  width:60%;
-  height:100px;
+  width:40%;
+  height:50px;
   color:#B10100;
 }
 .smallLogos{
-  width:15%;
-  height:100px;
+  width:10%;
+  height:50px;
   margin-left:20px;
 }
 .logo{
   margin-right:auto;
-  margin-left:12.5%;
-  margin-top:40px;
+  margin-left:28%;
+  margin-top:10%;
 }
 .show{
   width:70%;
@@ -45,9 +45,9 @@ html, body {
   margin-right:auto;
   text-align:center;
   font-size:25px;
-  margin-top:20px;
+  margin-top:40px;
   color:#B10100;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 .thanks{
   margin-top:30px;
@@ -57,7 +57,7 @@ html, body {
   margin-right:auto;
   text-align:center;
   color:#B10100;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 .desc{
   margin-top:0;
@@ -68,16 +68,16 @@ html, body {
   width:80%;
   padding:20px;
   color:#B10100;
-  font-family: 'Do Hyeon', sans-serif;
+    font-family: 'Do Hyeon', sans-serif;
   text-decoration: underline;
 }
 .scan{
   font-size:20px;
   text-align:center;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 .full{
-  background-image:url("../images/backgroundRedeem.jpg");
+  background: linear-gradient(to bottom left, #e6ffff 0%, #ffffff 100%);
   background-position: center;
   background-repeat: repeat;
   background-size: cover;
@@ -86,9 +86,7 @@ html, body {
   margin-top:0px;
   padding-top:0px;
 }
-.topBar{
-  box-shadow:0 0 0 0 !important;
-}
+
 .icon-bar {
     margin-top:0px !important;
 }

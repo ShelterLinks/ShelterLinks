@@ -64,6 +64,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                     isRedeemed:true
                   })
                   .then(function() {
+                    window.location.replace("couponRedeemed.html");
                     alert("Yes! It Works!")
                   })
                 }else{

@@ -34,14 +34,15 @@ firebase.auth().onAuthStateChanged(function(user) {
       var dayOfWeek=days[day];
       var mm = months[today.getMonth()]; //January is 0!
       var yyyy = today.getFullYear();
-
-
       today = dayOfWeek + ', ' + mm +" "+ day;
       $("#redeemed").append("<div class=\"center\"><img class=\"couponImage\" src=\""+ourData.image+"\"></div>"+
       "<h5 class=\"thanks\">Thank you for your commitment to the community. Here is your reward:</h5><br><h5 class=\"desc\">"+ourData.description+"</h5>"+
       "<h5 class=\"show\">Simply show this confirmation page to the cashier to use the coupon</h5>"+
       "<h3 class=\"scan\">Scanned on: "+today+" at "+time+"</h3>"+
       "<div class=\"logo\"><img class=\"smallLogos\" src=\"../images/smallLogo.png\"><img class=\"shelterlinkLogo\" src=\"../images/ShelterLinksLogo.png\"/></div>")
+      return db.collection("Coupons").doc(doc.id).update({
+        isRedeemed: false
+      })
     });
   });
 }());

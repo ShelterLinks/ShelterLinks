@@ -91,18 +91,24 @@ firebase.auth().onAuthStateChanged(function(user) {
     const numOfVolunteer=numOfVolunteers.value;
     const requirements=requirement.value;
     const duties=duty.value;
+    const organizers=organizer.value;
+    const contactNum=phoneNumber.value;
+    const contactEmails=contactEmail.value;
     var user;
     user = firebase.auth().currentUser;
     org=user.displayName+"";
     var db = firebase.firestore();
     var endDate=endDateTimes;
     var endTime=endDateTimes;
+    console.log(startDateTimes);
+    console.log(endDateTimes);
+    var pointsGained=pointsConverter(startDateTimes.substring(11,13),endDateTimes.substring(11,13));
     if (!(endTime=="Ongoing")){
       endDate=endDateTimes.substring(5,7)+"/"+endDateTimes.substring(8,10)+"/"+endDateTimes.substring(0,4)
       endTime=endDateTimes.substring(11);
       endTime=timeConverter(endTime);
-      console.log(endTime);
     }
+    console.log(pointsGained);
     var startDate=startDateTimes.substring(5,7)+"/"+startDateTimes.substring(8,10)+"/"+startDateTimes.substring(0,4)
     var startTime=startDateTimes.substring(11);
     startTime=timeConverter(startTime);
@@ -127,6 +133,10 @@ firebase.auth().onAuthStateChanged(function(user) {
       tags:tags,
       imagePath:imagePath,
       paperwork:paperworked,
+      pointsGained:pointsGained,
+      organizer:organizers,
+      contactNumber:contactNum,
+      contactEmail:contactEmails,
       isOn:false
     })
     console.log(org);
@@ -176,4 +186,9 @@ function timeConverter(time){
     time=firstPart+time.substring(2)+"PM";
   }
   return time;
+}
+function pointsConverter(time1,time2){
+  var firstPart=parseInt(time1.substring(0,2));
+  var secondPart=parseInt(time2.substring(0,2));
+  return ((secondPart-firstPart)*100);
 }

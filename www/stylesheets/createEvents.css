@@ -12,9 +12,8 @@ html, body {
   font-size:20px;
 }
 .creator{
-  background-image:url(../images/background.png);
   background-repeat: repeat;
-  background-position: center;
+  background-position: right;
   background-size:cover;
 }
 .event{
@@ -84,4 +83,12 @@ html, body {
   margin-bottom:0;
   height:300px;
   margin-top:5%;
+}
+label{
+  color:black;
+}
+::placeholder{
+}
+input,textarea,#borough{
+  border:navy 1px solid !important;
 }
