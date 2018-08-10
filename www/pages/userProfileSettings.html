@@ -34,18 +34,16 @@
     <img class="shelterlinks" src="../images/shelterlinks.png"/>
     <img class="smallLogo" src="../images/smallLogo.png"/>
   </div>
-  <h1 id="title">Your Profile</h1>
+  <h1 id="title">Edit Your Profile</h1>
   <div id="profilePictureDiv">
     <img src="" alt="Profile Picture" id="myimg2">
   </div>
   <div id="profileInputsDiv">
-    <table>
-      <tr><td>Username<input id="userName" maxlength="15" type="text"></td></tr>
-      <tr><td>Points<input id="points" type="text" disabled></td></tr>
-      <tr><td>Profile Picture Upload<input id="imageUpload" type="file"></td></tr>
-      <tr><td>Date of Birth<input id="dateOfBirth" type="date" disabled></td></tr>
-      <tr><td><button id="password">Change Your Password</button></td></tr>
-      <tr><td>Gender<input id="gender" type="text"></td></tr>
+    <input id="userName" maxlength="15" type="text" placeholder="Username">
+    <h6>Age:</h6>
+    <input id="age" type="number" placeholder="Age">
+    <h6>Password:</h6>
+    <input id="password" type="password" placeholder="Password" disabled>
     </table>
   </div>
   <div class="center"><button id="btnSignOut" class="btn btn-primary btn-lg">Sign Out</button></div>
