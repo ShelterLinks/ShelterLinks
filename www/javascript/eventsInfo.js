@@ -51,7 +51,7 @@ var doced;
       if(startDate == endDate) {
         dateString =  startTime + " - " + endTime;
       } else if (endDate == "Ongoing" || endTime == "Ongoing") {
-        dateString =  ", " + startTime + " - Ongoing" ;
+        dateString =   startTime + " - Ongoing" ;
       } else if (endDate != startDate) {
         dateString = " - " + endDate + " | " + startTime + " - " + endTime;
       }
@@ -63,6 +63,7 @@ var doced;
       } else {
         imageSrc = doc.data().imagePath;
       }
+      var real=doc.data().numOfVolunteerRemaining;
       var volunteers = doc.data().numOfVolunteer;
       var organization = doc.data().organization;
       var address = doc.data().address;
@@ -72,6 +73,7 @@ var doced;
       console.log(volunteerArray);
       var volunteersGoing=doc.data().volunteersGoing;
       var volunteerGoingString="";
+      var displayVolunteers="";
       volunteersGoing.forEach(function(volunteerGo){
         volunteerGoingString+="<span class=\"volunteerGoing\"> " +volunteerGo +" </span>"
       })
@@ -79,6 +81,18 @@ var doced;
       var tagString = "";
       doc.data().tags.forEach(function(tag) {
         tagString += "<span class=\"eventTag\"> " + tag +" </span>";
+      });
+      volunteerArray.forEach(function(individuals) {
+        db.collection("Users").where("email", "==", individuals)
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            var individualPhoto=doc.data().photoURL;
+            displayVolunteers = "<img class=\"imagePhoto\" src=\""+individualPhoto+"\" />";
+            console.log(displayVolunteers);
+          });
+          $("#info").append(displayVolunteers);
+        })
       });
       $("#info").append("<div class=\"myEvent\" ><div class=\"insertedEvent\"><a class=\"eventsLink\" id=\""+organization+"\">"+
       "<div class=\"eventInformation\"id=\""+organization+"\">" +
@@ -95,39 +109,48 @@ var doced;
       "<div class=\"eachInfo\"><h6 class=\"knows\">Duties<br></h6><p class=\"info\">"+doc.data().duties+"</p></div>"+
       "<div class=\"eachInfo\"><h6 class=\"knows\">Requirements<br></h6><p class=\"info\">The Minimum Age is "+doc.data().minAge+". "+doc.data().requirements+"</p></div>"+
       "<div class=\"eachInfo\"><h6 class=\"knows\">Contact Information<br></h6><p class=\"info\">Event Cordinator: "+doc.data().organizer+"</p><p class=\"dudu\">Contact Number: "+doc.data().contactNumber+"</p><p class=\"dudu\">Contact Email: "+doc.data().contactEmail+"</p></div>"+
-      "<hr><div class=\"voluns\">Volunteer Spots Left: "+"<span id=\"remain\">"+doc.data().numOfVolunteerRemaining+"</span>"+"</div><br><br><br><br><br><hr>"+
+      "<hr><div class=\"voluns\">Volunteer Spots Left: "+"<span id=\"remain\">"+doc.data().numOfVolunteerRemaining+"</span>"+"</div><div id=\"displayVolunteers\"></div><hr>"+
       "<div class=\"volunteer\"><button type=\"button\" id=\"signedUp\" class=\"btn btn-primary volunteered\">I want to volunteer</button></div>")
       var signedUp=document.getElementById("signedUp");
-      for (var i=0;i<volunteerArray.length;i++){
-        if (volunteerArray[i]==email){
-          signedUp.disabled=true;
-          signedUp.innerHTML="You have already signed up!";
-        }
-      }
-      signedUp.addEventListener('click',e => {
-        console.log(email);
-        volunteerArray.push(email);
-        return db.collection("Events").doc(doced.id).update({
-          volunteersGoing:volunteerArray,
-          numOfVolunteerRemaining:(doc.data().numOfVolunteerRemaining-1)
-        })
-        .then(function() {
-          db.collection("Users").where("email", "==", email)
+      if (volunteerArray.indexOf(email)>=0){
+        signedUp.innerHTML="I can not make it";
+        signedUp.addEventListener('click',e => {
+          db.collection("Users").where("email","==",email)
           .get()
           .then(function(querySnapshot) {
-            querySnapshot.forEach(function(docd) {
-              var eventsGoing=docd.data().eventsGoing;
-              eventsGoing.push(doc.id)
-              return db.collection("Users").doc(docd.id).update({
-                eventsGoing:eventsGoing
+            querySnapshot.forEach(function(doc2) {
+              var eventsGoing=doc2.data().eventsGoing;
+              if (eventsGoing.indexOf(doc.id)>=0){
+                eventsGoing.splice(eventsGoing.indexOf(doc.id),1);
+              }
+              return db.collection("Users").doc(doc2.id).update({
+                eventsGoing: eventsGoing,
               })
-              .then(function(querySnapshot){
-                  window.location.replace("eventsPage.html");
+              .then(function() {
+                volunteerArray.splice(volunteerArray.indexOf(email),1);
+                real+=1;
+                return db.collection("Events").doc(doc.id).update({
+                  volunteersGoing: volunteerArray,
+                  numOfVolunteerRemaining:real
+                }).then(function() {
+                  window.location.href="eventsPage.html";
+                })
+
               })
+
             });
+          });
+        });
+      }else{
+        signedUp.addEventListener('click',e => {
+          return db.collection("Events").doc(doc.id).update({
+            isSignUp: true
+          }).then(function() {
+            window.location.href="signedUp.html";
           })
-        })
-      });
+        });
+      }
+
       return db.collection("Events").doc(doc.id).update({
         isOn: false
       })

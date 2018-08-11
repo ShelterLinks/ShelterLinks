@@ -59,7 +59,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 var correctCode="ShelterLinks Redemption: "+company;
                 if (result.text==correctCode){
                   currentSheltercoins-=300;
-                  return db.collection("Users").doc(doc.id).update({
+                  return db.collection("Coupons").doc(doc.id).update({
                     points:currentSheltercoins,
                     isRedeemed:true
                   })
@@ -75,7 +75,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 alert("Scanning failed: " + error);
               },
               {
-                preferFrontCamera : true, // iOS and Android
+                preferFrontCamera : false, // iOS and Android
                 showFlipCameraButton : true, // iOS and Android
                 showTorchButton : true, // iOS and Android
                 torchOn: true, // Android, launch with the torch switched on (if available)

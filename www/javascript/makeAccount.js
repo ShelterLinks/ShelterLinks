@@ -15,6 +15,8 @@
     db.collection("Users").doc().set({
       name: name,
       email: email,
+      photoURL: "",
+      eventsGoing:[],
       points: 0
     }).then(function(){
       const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
