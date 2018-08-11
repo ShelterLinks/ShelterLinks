@@ -137,6 +137,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       organizer:organizers,
       contactNumber:contactNum,
       contactEmail:contactEmails,
+      isSignUp:false,
       isOn:false
     })
     console.log(org);
