@@ -37,7 +37,7 @@ html, body {
 .logo{
   margin-right:auto;
   margin-left:28%;
-  margin-top:10%;
+  margin-top:7.5%;
 }
 .show{
   width:70%;
@@ -73,6 +73,7 @@ html, body {
 }
 .scan{
   font-size:20px;
+  padding-top:20px;
   text-align:center;
   font-family: 'Quicksand', sans-serif;
 }

@@ -29,6 +29,7 @@ html, body {
   border:solid 1px black;
   margin-left:auto;
   margin-right:auto;
+  background-color:white;
 }
 .couponImage{
   width:100%;
