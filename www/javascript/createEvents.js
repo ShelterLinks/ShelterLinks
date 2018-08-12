@@ -12,8 +12,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }else{
       img2.src = user.photoURL;
     }
-    console.log(user.photoURL);
-    console.log(name);
   }else {
     console.log("boi");
   }
@@ -100,19 +98,15 @@ firebase.auth().onAuthStateChanged(function(user) {
     var db = firebase.firestore();
     var endDate=endDateTimes;
     var endTime=endDateTimes;
-    console.log(startDateTimes);
-    console.log(endDateTimes);
     var pointsGained=pointsConverter(startDateTimes.substring(11,13),endDateTimes.substring(11,13));
     if (!(endTime=="Ongoing")){
       endDate=endDateTimes.substring(5,7)+"/"+endDateTimes.substring(8,10)+"/"+endDateTimes.substring(0,4)
       endTime=endDateTimes.substring(11);
       endTime=timeConverter(endTime);
     }
-    console.log(pointsGained);
     var startDate=startDateTimes.substring(5,7)+"/"+startDateTimes.substring(8,10)+"/"+startDateTimes.substring(0,4)
     var startTime=startDateTimes.substring(11);
     startTime=timeConverter(startTime);
-    console.log(startTime);
     db.collection("Events").doc().set({
       name:names,
       organization: org,
@@ -137,10 +131,11 @@ firebase.auth().onAuthStateChanged(function(user) {
       organizer:organizers,
       contactNumber:contactNum,
       contactEmail:contactEmails,
-      isSignUp:false,
-      isOn:false
-    })
-    console.log(org);
+      isOn:true,
+      updateEvent:false,
+    }).then(function() {
+      window.location.replace("eventsManagement.html");
+})
   });
 }());
 

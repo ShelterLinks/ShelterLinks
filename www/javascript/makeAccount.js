@@ -17,6 +17,10 @@
       email: email,
       photoURL: "",
       eventsGoing:[],
+      eventsInfo:"none",
+      signedUp:"none",
+      individualCoupon:"none",
+      couponRedeemed:"none",
       points: 0
     }).then(function(){
       const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {

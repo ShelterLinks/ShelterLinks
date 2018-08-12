@@ -1,18 +1,28 @@
 var data=[];
 var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var db = firebase.firestore();
+var idOfUser;
 (function(){
   var auth = firebase.auth();
   var name;
+  var email;
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       name=auth.currentUser.displayName;
+      email=auth.currentUser.email;
       var img2 = document.getElementById('myimg2');
       if(user.photoURL==null){
         img2.src="../images/white.png";
       }else{
         img2.src = user.photoURL;
       }
+      db.collection("Users").where("email", "==", email)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          idOfUser=doc.id;
+        })
+      });
     }else {
       console.log("boi");
     }
@@ -31,39 +41,7 @@ var db = firebase.firestore();
   }
 
   today = mm + '/' + dd + '/' + yyyy;
-  db.collection("Events").where("isOn", "==", false)
-  .get()
-  .then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-      if (doc.data().startDate<today){
-        db.collection("Events").doc(doc.id).delete().then(function() {
-          console.log(doc.id);
-        }).catch(function(error) {
-          console.error("Error removing document: ", error);
-        });
-        db.collection("Users").where("email","==",email)
-        .get()
-        .then(function(querySnapshot) {
-          querySnapshot.forEach(function(doc2) {
-            var eventsGoing=doc2.data().eventsGoing;
-            if (eventsGoing.indexOf(doc.id)>=0){
-              eventsGoing.splice(eventsGoing.indexOf(doc.id),1);
-            }
-            return db.collection("Users").doc(doc2.id).update({
-              eventsGoing: eventsGoing
-            })
-            .then(function() {
-              location.reload();
-            })
-          });
-        });
-      }
-    });
-  })
-  .catch(function(error) {
-    console.log("Error getting documents: ", error);
-  });
-  db.collection("Events").where("isOn", "==", false).orderBy("startDate")
+  db.collection("Events").where("isOn", "==", true).orderBy("startDate")
   .get()
   .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
@@ -131,6 +109,38 @@ var db = firebase.firestore();
   .catch(function(error) {
     console.log("Error getting documents: ", error);
   });
+  db.collection("Events").where("isOn", "==", false)
+  .get()
+  .then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      if (doc.data().startDate<today){
+        db.collection("Events").doc(doc.id).delete().then(function() {
+          console.log(doc.id);
+        }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+        db.collection("Users").where("email","==",email)
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc2) {
+            var eventsGoing=doc2.data().eventsGoing;
+            if (eventsGoing.indexOf(doc.id)>=0){
+              eventsGoing.splice(eventsGoing.indexOf(doc.id),1);
+            }
+            return db.collection("Users").doc(doc2.id).update({
+              eventsGoing: eventsGoing
+            })
+            .then(function() {
+              location.reload();
+            })
+          });
+        });
+      }
+    });
+  })
+  .catch(function(error) {
+    console.log("Error getting documents: ", error);
+  });
 
 
   document.onclick = function(event) {
@@ -151,8 +161,8 @@ var db = firebase.firestore();
     .get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        return db.collection("Events").doc(doc.id).update({
-          isOn: true
+        return db.collection("Users").doc(idOfUser).update({
+          eventsInfo: doc.id
         })
         .then(function() {
           window.location.replace("eventsInfo.html");
