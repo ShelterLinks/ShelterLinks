@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title> ShelterLinks </title>
   <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="../stylesheets/createEvents.css" type="text/css"/>
+  <link rel="stylesheet" href="../stylesheets/updateEvent.css" type="text/css"/>
   <link rel="stylesheet" href="../stylesheets/index.css" type="text/css"/>
   <link rel="stylesheet" href="../stylesheets/all.css" type="text/css"/>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
@@ -17,9 +17,20 @@
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-storage.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
-  <script src="../javascript/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDX1MrTkc1RGlOuOmKT_tIcchEXo2b9rp8",
+    authDomain: "shelterlinks-39c9a.firebaseapp.com",
+    databaseURL: "https://shelterlinks-39c9a.firebaseio.com",
+    projectId: "shelterlinks-39c9a",
+    storageBucket: "shelterlinks-39c9a.appspot.com",
+    messagingSenderId: "138981597567"
+  };
+  firebase.initializeApp(config);
+  </script>
 </head>
-<body>
+  <body>
   <div class="d-inline-block topBar">
     <img class="shelterlinks" src="../images/shelterlinks.png"/>
     <img class="smallLogo" src="../images/smallLogo.png"/>
@@ -28,7 +39,7 @@
   <div class="creator">
     <div class="container">
       <br>
-      <img src="../images/imageUpload.png" id="myimg"/>
+      <img src="" id="myimg"/>
       <form>
         <div class="form-group">
           <input name="userfile" type="file" accept="image/*" class="form-control-file uploadPhoto" alt="hi" style="opacity:0;" id="fileUpload">
@@ -71,21 +82,7 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="startDateTime">Start Date and Time</label>
-            <input class="form-control" type="datetime-local" value="" id="startDateTime">
-          </div>
-          <div class="form-group col-md-6">
-            <div class="inlined">
-              <label for="EndDateTime">End Date and Time <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="date">
-                <label class="form-check-label" for="date">
-                  Ongoing
-                </label>
-              </div></label>
-              <input class="form-control" type="datetime-local" value="" id="EndDateTime">
-            </div>
-          </div>
+
           <div class="form-group col-md-6">
             <label for="minAge">Minimum Age</label>
             <input class="form-control" type="number" placeholder="Minimum Age Requirement" id="minAge">
@@ -115,23 +112,23 @@
         </div>
         <h6>Tags</h6>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="soup" value="option1">
+          <input class="form-check-input" type="checkbox" id="SoupKitchen" value="option1">
           <label class="form-check-label" for="soup">Soup Kitchen</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="pantry" value="option2">
+          <input class="form-check-input" type="checkbox" id="FoodPantry" value="option2">
           <label class="form-check-label" for="pantry">Food Pantry</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="1day" value="option3">
+          <input class="form-check-input" type="checkbox" id="SingleDay" value="option3">
           <label class="form-check-label" for="1day">Single Day</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="boi" value="option4">
+          <input class="form-check-input" type="checkbox" id="Continuing" value="option4">
           <label class="form-check-label" for="boi">Continuing</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="donations" value="option5">
+          <input class="form-check-input" type="checkbox" id="Donations" value="option5">
           <label class="form-check-label" for="donations">Donations</label>
         </div>
         <div class="form-check form-check-inline">
@@ -139,10 +136,9 @@
           <label class="form-check-label" for="Drive">Drive</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="teens" value="option6">
+          <input class="form-check-input" type="checkbox" id="Teensallowed" value="option6">
           <label class="form-check-label" for="teens">For Teens</label>
         </div>
-
         <br><br>
         <h4>Organizer Information </h4>
         <div class="form-group row">
@@ -167,20 +163,21 @@
         </div>
         <h6 id="fileUploaded">File Uploaded : </h6>
       </form>
-      <div class="center"><button id="btnSubmit" class="btn btn-primary btn-lg" >Submit</button></div>
-    </div>
-    <div class="icon-bar">
-      <a href="#"><i class="fas fa-home"></i></a>
-      <a href="eventsPage.html"><i class="fa fa-calendar"></i></a>
-      <a href="eventsManagement.html"><i class="fas fa-link"></i></a>
-      <a href="#"><i class="fas fa-donate"></i></a>
+      <div class="center"><button id="btnSubmit" class="btn btn-primary btn-lg" >Update</button></div>
     </div>
 
+</div>
+  <div class="icon-bar">
+    <a href="#"><i class="fas fa-home"></i></a>
+    <a href="createEvents.html"><i class="fa fa-calendar"></i></a>
+    <a href="eventsManagement.html"><i class="fas fa-link"></i></a>
+    <a href="#"><i class="fas fa-donate"></i></a>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="../javascript/bootstrap.min.js"></script>
-    <script src="../javascript/index.js"></script>
-    <script src="../javascript/createEvents.js"></script>
-  </body>
-  </html>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="../javascript/bootstrap.min.js"></script>
+<script src="../javascript/updateEvent.js"></script>
+</body>
+</html>
