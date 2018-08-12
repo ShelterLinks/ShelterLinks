@@ -16,7 +16,7 @@ var email;
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc1) {
-          correctId=doc1.data().isRedeemed;
+          correctId=doc1.data().couponRedeemed;
           db.collection("Coupons").doc(correctId)
           .get()
           .then(function(doc) {
