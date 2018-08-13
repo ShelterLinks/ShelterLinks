@@ -40,6 +40,10 @@ firebase.auth().onAuthStateChanged(function(user) {
   .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       ourData=doc.data();
+      if (ourData.numOfVolunteer==="No Limit"){
+        document.getElementById('noCap').checked=true;
+        document.getElementById('numOfVolunteers').type="text";
+      }
       uploader.src=ourData.imagePath;
       imagePath=ourData.imagePath;
       console.log(ourData.imagePath);
@@ -122,7 +126,12 @@ firebase.auth().onAuthStateChanged(function(user) {
         const zips=zip.value;
         const ages=minAge.value;
         const numOfVolunteer=numOfVolunteers.value;
-        const numOfVolunteerRemain=numOfVolunteer-doc.data().volunteersGoing.length;
+        var numOfVolunteerRemain;
+        if(numOfVolunteer =="No Limit"){
+          numOfVolunteerRemain="No Limit";
+        }else{
+          numOfVolunteerRemain=numOfVolunteer-doc.data().volunteersGoing.length;
+        }
         const requirements=requirement.value;
         const duties=duty.value;
         const organizers=organizer.value;
@@ -145,6 +154,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           organizer:organizers,
           contactNumber:contactNum,
           contactEmail:contactEmails,
+        }).then(function() {
+          window.location.href="eventsManagement.html"
         })
       });
       return db.collection("Events").doc(doc.id).update({

@@ -1,0 +1,51 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+#article{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  padding-bottom:12.5%;
+}
+.articleImage{
+  margin-top:40px;
+  width:100%;
+  height:400px;
+  box-shadow: 2px 2px 3px 2px darkgrey;
+}
+.name{
+  display:inline-block;
+  color:#af0710;
+  font-family: 'Muli', sans-serif;
+  font-weight: bold;
+  margin-top:2.5px;
+}
+.date{
+  display:inline-block;
+  color:#af0710;
+  float:right;
+  font-size:25px;
+  margin-top:4.5px;
+  font-family: 'Muli', sans-serif;
+  font-weight: bold;
+}
+.title{
+  font-family: 'Questrial', sans-serif;
+  font-weight:bolder;
+  color:#3025A4;
+  width:95%;
+  font-size:40px;
+}
+.actualArticle{
+  font-family:"Open Sans",sans-serif;
+  font-size:25px;
+}
+.tab{
+  padding-left:3em;
+}

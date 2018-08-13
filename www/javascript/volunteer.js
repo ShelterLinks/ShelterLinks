@@ -24,7 +24,7 @@
   });
     firebase.auth().onAuthStateChanged(firebaseUser=>{
       if (firebaseUser){
-        window.location.replace("createEvents.html");
+        window.location.replace("homepage.html");
         console.log(firebaseUser);
       }else{
         console.log('not logged in');

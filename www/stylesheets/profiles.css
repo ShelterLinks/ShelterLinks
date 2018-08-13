@@ -166,3 +166,11 @@ a:hover{
 .nope{
   display:none;
 }
+#eventsSigned{
+  font-size:30px;
+  margin-left:2.5%;
+}
+#eventsSign{
+  font-size:30px;
+  margin-left:2.5%;
+}

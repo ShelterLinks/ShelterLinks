@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       var volunteersString;
       if(volunteersNotConfirmed.length==0)
       {
-        $("#volunteers").append("All Volunteers have been confirmed");
+        $("#volunteers").append("<h6 class=\"allConfirmed\"><i>All Volunteers have been confirmed.<br>Thank you!</i></h6>");
       }
       volunteersNotConfirmed.forEach(function(individuals) {
         db.collection("Users").where("email", "==", individuals)

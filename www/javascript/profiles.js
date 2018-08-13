@@ -3,10 +3,12 @@ var userdude;
 var db = firebase.firestore();
 var auth = firebase.auth();
 var email;
+var idOfUser;
 var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 (function(){
   var username=document.getElementById("username");
   var name, photoUrl, uid, emailVerified;
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       name=auth.currentUser.displayName;
@@ -25,6 +27,16 @@ var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
+          idOfUser=doc.id;
+          type="user";
+          $("#nav-bar").append("<div class=\"icon-bar\">"+
+            "<a href=\"homepage.html\"><i class=\"fas fa-home\"></i></a>"+
+            "<a href=\"eventsPage.html\"><i class=\"fa fa-calendar\"></i></a>"+
+            "<a href=\"sheltercoins.html\"><i class=\"fas fa-link\"></i></a>"+
+            "<a href=\"#\"><i class=\"fas fa-donate\"></i></a>"+
+          "</div>")
+          $("#eventsSigned").append("Events you signed up for<hr><br><br><br>")
+          $("#eventsSign").append("Your Links<hr>");
           var eventsGoing=doc.data().eventsGoing;
           eventsGoing.forEach(function(event) {
             db.collection("Events").doc(event).get().then(function(doc){
@@ -79,41 +91,55 @@ var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
             });
           })
         })
+        document.onclick = function(event) {
+          var target = $(event.target.parentElement.parentElement);
+          var target2 = $(event.target.parentElement);
+          var data=target[0].innerHTML;
+          var eventNamed=data.substring(data.indexOf("eventName")+11,data.indexOf("<",data.indexOf("eventName")+11));
+          var startDatee=data.substring(data.indexOf("nope")+6,data.indexOf("<",data.indexOf("nope")+7));
+          var timed=data.indexOf("eventTime");
+          var timeds=data.indexOf(",",timed+1);
+          var startTimed=data.substring(timeds+2,(data.indexOf("-",timed+1))-1).replace(" ","");
+          var organization=target[0].id;
+          console.log(startTimed);
+          console.log(organization);
+          console.log(eventNamed);
+          console.log(startDatee);
+          db.collection("Events").where("organization", "==", organization).where("startDate", "==",startDatee).where("startTime", "==", startTimed).where("name", "==", eventNamed)
+          .get()
+          .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+              return db.collection("Events").doc(doc.id).update({
+                isOn: true
+              })
+              .then(function() {
+                window.location.replace("eventsInfo.html");
+              })
+            });
+          })
+          .catch(function(error) {
+            console.log("Error getting documents: ", error);
+          });
+        };
+      });
+      db.collection("Shelters").where("email", "==", email)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          idOfUser=doc.id;
+          type="shelter";
+          $("#nav-bar").append("<div class=\"icon-bar\">"+
+            "<a href=\"homepage.html\"><i class=\"fas fa-home\"></i></a>"+
+            "<a href=\"createEvents.html\"><i class=\"fa fa-calendar\"></i></a>"+
+            "<a href=\"eventsManagement.html\"><i class=\"fas fa-link\"></i></a>"+
+            "<a href=\"#\"><i class=\"fas fa-donate\"></i></a>"+
+          "</div>")
+        })
       });
     } else {
       console.log("boi");
     }
   });
-  document.onclick = function(event) {
-    var target = $(event.target.parentElement.parentElement);
-    var target2 = $(event.target.parentElement);
-    var data=target[0].innerHTML;
-    var eventNamed=data.substring(data.indexOf("eventName")+11,data.indexOf("<",data.indexOf("eventName")+11));
-    var startDatee=data.substring(data.indexOf("nope")+6,data.indexOf("<",data.indexOf("nope")+7));
-    var timed=data.indexOf("eventTime");
-    var timeds=data.indexOf(",",timed+1);
-    var startTimed=data.substring(timeds+2,(data.indexOf("-",timed+1))-1).replace(" ","");
-    var organization=target[0].id;
-    console.log(startTimed);
-    console.log(organization);
-    console.log(eventNamed);
-    console.log(startDatee);
-    db.collection("Events").where("organization", "==", organization).where("startDate", "==",startDatee).where("startTime", "==", startTimed).where("name", "==", eventNamed)
-    .get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        return db.collection("Events").doc(doc.id).update({
-          isOn: true
-        })
-        .then(function() {
-          window.location.replace("eventsInfo.html");
-        })
-      });
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
-    });
-  };
 }());
 var uploader=document.getElementById("fileUpload");
 fileUpload.addEventListener('change',function(e){
@@ -136,6 +162,24 @@ fileUpload.addEventListener('change',function(e){
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           return db.collection("Users").doc(doc.id).update({
+            photoURL:url
+          })
+          .then(function(querySnapshot){
+            userdude.updateProfile({
+              photoURL: url
+            }).then(function() {
+              location.reload();
+            }).catch(function(error) {
+              console.log(error);
+            })
+          })
+        });
+      })
+      db.collection("Shelters").where("email", "==", email)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          return db.collection("Shelters").doc(doc.id).update({
             photoURL:url
           })
           .then(function(querySnapshot){

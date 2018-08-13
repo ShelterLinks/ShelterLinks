@@ -113,7 +113,7 @@ var idOfUser;
   .get()
   .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-      if (doc.data().startDate<today){
+      if ((doc.data().endDate!=="Ongoing")&&(doc.data().endDate<today)){
         db.collection("Events").doc(doc.id).delete().then(function() {
           console.log(doc.id);
         }).catch(function(error) {
