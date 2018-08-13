@@ -11,12 +11,11 @@ var db = firebase.firestore();
       name=auth.currentUser.displayName;
       var img2 = document.getElementById('myimg2');
       email=auth.currentUser.email;
-      db.collection("Users").where("email", "==", email)
+      db.collection("Shelters").where("email", "==", email)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc1) {
-          correctId=doc1.data().eventsInfo;
-          console.log(correctId);
+          correctId=doc1.data().shelterEventPreview;
           db.collection("Events").doc(correctId)
           .get()
           .then(function(doc) {
@@ -111,53 +110,7 @@ var db = firebase.firestore();
             "<div class=\"eachInfo\"><h6 class=\"knows\">Requirements<br></h6><p class=\"info\">The Minimum Age is "+doc.data().minAge+". "+doc.data().requirements+"</p></div>"+
             "<div class=\"eachInfo\"><h6 class=\"knows\">Contact Information<br></h6><p class=\"info\">Event Cordinator: "+doc.data().organizer+"</p><p class=\"dudu\">Contact Number: "+doc.data().contactNumber+"</p><p class=\"dudu\">Contact Email: "+doc.data().contactEmail+"</p></div>"+
             "<div class=\"eachInfo\"><h6 class=\"knows\">Paperwork for Volunteers(Bring on Day)<br></h6><p class=\"info\">"+paperworkVolunteers+"</p></div>"+
-            "<hr><div class=\"voluns\">Volunteer Spots Left: "+"<span id=\"remain\">"+doc.data().numOfVolunteerRemaining+"</span>"+"</div><div id=\"displayVolunteers\"></div><hr>"+
-            "<div class=\"volunteer\"><button type=\"button\" id=\"signedUp\" class=\"btn btn-primary volunteered\">I want to volunteer</button></div>")
-            var signedUp=document.getElementById("signedUp");
-            if (numOfVolunteerRemaining==0&&(!(volunteerArray.indexOf(email)>=0))){
-              signedUp.disabled=true;
-            }
-            if (volunteerArray.indexOf(email)>=0){
-              signedUp.innerHTML="I can not make it";
-              signedUp.addEventListener('click',e => {
-                db.collection("Users").where("email","==",email)
-                .get()
-                .then(function(querySnapshot) {
-                  querySnapshot.forEach(function(doc2) {
-                    var eventsGoing=doc2.data().eventsGoing;
-                    if (eventsGoing.indexOf(doc.id)>=0){
-                      eventsGoing.splice(eventsGoing.indexOf(doc.id),1);
-                    }
-                    return db.collection("Users").doc(doc2.id).update({
-                      eventsGoing: eventsGoing,
-                    })
-                    .then(function() {
-                      var volunteersNotConfirmed=doc.data().volunteersNotConfirmed;
-                      volunteersNotConfirmed.splice(volunteersNotConfirmed.indexOf(email),1);
-                      volunteerArray.splice(volunteerArray.indexOf(email),1);
-                      real+=1;
-                      return db.collection("Events").doc(doc.id).update({
-                        volunteersGoing: volunteerArray,
-                        volunteersNotConfirmed:volunteersNotConfirmed,
-                        numOfVolunteerRemaining:real
-                      }).then(function() {
-                        window.location.href="eventsPage.html";
-                      })
-
-                    })
-
-                  });
-                });
-              });
-            }else{
-              signedUp.addEventListener('click',e => {
-                return db.collection("Users").doc(doc1.id).update({
-                  signedUp: doc.id
-                }).then(function() {
-                  window.location.href="signedUp.html";
-                })
-              });
-            }
+            "<hr><div class=\"voluns\">Volunteer Spots Left: "+"<span id=\"remain\">"+doc.data().numOfVolunteerRemaining+"</span>"+"</div><div id=\"displayVolunteers\"></div><hr>")
           });
         })
 

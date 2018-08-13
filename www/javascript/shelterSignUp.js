@@ -28,7 +28,8 @@
       manager: manager,
       zip: zip,
       email:email,
-      phone: phone
+      phone: phone,
+      shelterEventPreview:"none"
     }).then(function() {
       const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
         // Handle Errors here.
