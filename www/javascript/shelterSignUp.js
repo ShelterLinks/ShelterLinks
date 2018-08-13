@@ -29,6 +29,7 @@
       zip: zip,
       email:email,
       phone: phone,
+      articleOn:"none",
       shelterEventPreview:"none"
     }).then(function() {
       const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {

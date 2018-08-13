@@ -21,6 +21,7 @@
       signedUp:"none",
       individualCoupon:"none",
       couponRedeemed:"none",
+      articleOn:"none",
       points: 0
     }).then(function(){
       const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
@@ -45,7 +46,7 @@
       user.updateProfile({
         displayName: name
       }).then(function() {
-        window.location.replace("createEvents.html");
+        window.location.replace("homepage.html");
       }).catch(function(error) {
       });
     }else{
