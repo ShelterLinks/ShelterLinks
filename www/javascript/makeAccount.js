@@ -21,8 +21,11 @@
       signedUp:"none",
       individualCoupon:"none",
       couponRedeemed:"none",
-      articleOn:"none",
-      points: 0
+      articleOn: "none",
+      points: 0,
+      gender: "",
+      age: "",
+      phone: ""
     }).then(function(){
       const promise=auth.createUserWithEmailAndPassword(email,pass).catch(function(error) {
         // Handle Errors here.

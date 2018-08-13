@@ -1,0 +1,63 @@
+#title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 10%;
+}
+input {
+  border: 0px;
+  text-align: center;
+  color: black;
+}
+input:focus {
+  border: 0px;
+  box-shadow: 0px;
+  outline: 0;
+}
+#myimg2 {
+  position: relative;
+  left: 0%;
+  width: 100%;
+  height: auto;
+}
+#profilePictureDiv {
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  top: 15%;
+  right: 40%;
+  left: 40%;
+}
+#profileInputsDiv {
+  position: absolute;
+  text-align: center;
+  top: 33%;
+  left: 0%;
+  right: 0%;
+}
+.center {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  bottom: 15%;
+}
+#userName {
+  position: relative;
+  top: 0%;
+  width: 100%;
+  font-size: 2em;
+  font-weight: bold;
+}
+#age {
+  position: relative;
+  top: 5%;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+input {
+  width: 75%;
+  font-weight: bold;
+  font-size: 1.5em;
+}
