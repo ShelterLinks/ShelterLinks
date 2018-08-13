@@ -25,13 +25,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 (function(){
   var sheltercoins=document.getElementById("sheltercoins");
+  var couponsHave=document.getElementById("couponsHave");
   db.collection("Users").where("name", "==", name)
   .get()
   .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       points=doc.data().points;
       sheltercoins.innerHTML=points;
-
+      couponsHave.innerHTML=Math.round(parseInt(points)/300);
       sheltercoinsNeeded.innerHTML=300-(points%300);
 
     });

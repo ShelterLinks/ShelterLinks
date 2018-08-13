@@ -98,7 +98,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     var db = firebase.firestore();
     var endDate=endDateTimes;
     var endTime=endDateTimes;
-    var pointsGained=pointsConverter(startDateTimes.substring(11,13),endDateTimes.substring(11,13));
+    var pointsGained;
+    if (endTime=="Ongoing"){
+      pointsGained="Varying Amount of";
+    }else{
+      pointsGained=pointsConverter(startDateTimes.substring(11,13),endDateTimes.substring(11,13));
+    }
     if (!(endTime=="Ongoing")){
       endDate=endDateTimes.substring(5,7)+"/"+endDateTimes.substring(8,10)+"/"+endDateTimes.substring(0,4)
       endTime=endDateTimes.substring(11);
@@ -124,6 +129,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       requirements:requirements,
       duties:duties,
       volunteersGoing:[],
+      volunteersNotConfirmed:[],
       tags:tags,
       imagePath:imagePath,
       paperwork:paperworked,
@@ -132,7 +138,8 @@ firebase.auth().onAuthStateChanged(function(user) {
       contactNumber:contactNum,
       contactEmail:contactEmails,
       isOn:true,
-      updateEvent:false,
+      confirmVolunteers:false,
+      updateEvent:false
     }).then(function() {
       window.location.replace("eventsManagement.html");
 })

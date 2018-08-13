@@ -6,6 +6,7 @@ var storage = firebase.storage();
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     name=auth.currentUser.displayName;
+    email=auth.currentUser.email;
     var img2 = document.getElementById('myimg2');
     if(user.photoURL==null){
       img2.src="../images/white.png";
@@ -34,7 +35,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   const phoneNumber=document.getElementById('phoneNumber');
   const contactEmail=document.getElementById('contactEmail');
   var org;
-  db.collection("Events").where("updateEvent", "==", true)
+  db.collection("Events").where("updateEvent", "==", true).where("organization","==",name)
   .get()
   .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {

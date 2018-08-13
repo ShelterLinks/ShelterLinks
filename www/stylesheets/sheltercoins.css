@@ -12,13 +12,21 @@ html, body {
   text-align:center;
   padding-top:40px;
   padding-bottom:120px;
+  font-family:"Open+Sans",sans-serif;
+  color:#AF0710;
   background: linear-gradient(to bottom left, #e6ffff 0%, #ffffff 100%);
 }
 #sheltercoins, #coins{
   font-size:30px;
 }
+#sheltercoins{
+  text-decoration: underline;
+}
 #sheltercoins, #sheltercoinsNeeded{
   font-weight:bold;
+}
+#sheltercoinsNeeded{
+  text-decoration: underline;
 }
 #sheltercoinsNeeded, #needed{
   font-size:25px;
@@ -30,6 +38,8 @@ html, body {
   margin-left:auto;
   margin-right:auto;
   background-color:white;
+  color:black;
+  font-family:"PT Sans",sans-serif !important;
 }
 .couponImage{
   width:100%;

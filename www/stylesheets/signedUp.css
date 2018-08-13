@@ -153,6 +153,9 @@ a:hover{
   text-align:left;
   top:20px;
   color:black;
+  overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y:hidden;
 }
 .nope{
   display:none;
