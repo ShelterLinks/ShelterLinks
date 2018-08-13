@@ -51,18 +51,22 @@
         console.log("boi");
     }
   });
-    var age = userAgeElement.value;
-    var phone = userPhoneElement.value;
-    var gender = userGenderElement.value;
     userSubmitButtonElement.addEventListener('click', e => {
       db.collection("Users").where("email", "==", email).get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          doc.update({age:age});
-          doc.update({phone:phone});
-          doc.update({gender:gender});
-      })})
-      alert("Your Changes Have Been Saved!");
+          var age = userAgeElement.value;
+          var phone = userPhoneElement.value;
+          var gender = userGenderElement.value;
+          return db.collection("Users").doc(doc.id).update({
+            age:age,
+            phone:phone,
+            gender:gender
+          }).then(function(){
+            console.log("Successfully updated User!")
+          })
+      });
+    })
     })
     const btnSignOut=document.getElementById('btnSignOut');
   btnSignOut.addEventListener('click',e=>{
