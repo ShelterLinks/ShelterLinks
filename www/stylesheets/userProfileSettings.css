@@ -56,7 +56,8 @@ input:focus {
   font-weight: bold;
   font-size: 1.5em;
 }
-#password {
+input {
+  width: 75%;
   font-weight: bold;
   font-size: 1.5em;
 }
