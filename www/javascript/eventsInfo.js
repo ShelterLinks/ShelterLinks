@@ -114,6 +114,9 @@ var db = firebase.firestore();
             "<hr><div class=\"voluns\">Volunteer Spots Left: "+"<span id=\"remain\">"+doc.data().numOfVolunteerRemaining+"</span>"+"</div><div id=\"displayVolunteers\"></div><hr>"+
             "<div class=\"volunteer\"><button type=\"button\" id=\"signedUp\" class=\"btn btn-primary volunteered\">I want to volunteer</button></div>")
             var signedUp=document.getElementById("signedUp");
+            if (numOfVolunteerRemaining==0&&(!(volunteerArray.indexOf(email)>=0))){
+              signedUp.disabled=true;
+            }
             if (volunteerArray.indexOf(email)>=0){
               signedUp.innerHTML="I can not make it";
               signedUp.addEventListener('click',e => {
@@ -129,10 +132,13 @@ var db = firebase.firestore();
                       eventsGoing: eventsGoing,
                     })
                     .then(function() {
+                      var volunteersNotConfirmed=doc.data().volunteersNotConfirmed;
+                      volunteersNotConfirmed.splice(volunteersNotConfirmed.indexOf(email),1);
                       volunteerArray.splice(volunteerArray.indexOf(email),1);
                       real+=1;
                       return db.collection("Events").doc(doc.id).update({
                         volunteersGoing: volunteerArray,
+                        volunteersNotConfirmed:volunteersNotConfirmed,
                         numOfVolunteerRemaining:real
                       }).then(function() {
                         window.location.href="eventsPage.html";

@@ -60,6 +60,7 @@ var storage = firebase.storage();
             var points=doc.data().pointsGained;
             volunteerArray=doc.data().volunteersGoing;
             var volunteersGoing=doc.data().volunteersGoing;
+            var volunteersNotConfirmed=doc.data().volunteersNotConfirmed;
             var volunteerGoingString="";
             var displayVolunteers="";
             var tagString = "";
@@ -94,8 +95,10 @@ var storage = firebase.storage();
             )
             signedUp.addEventListener('click',e => {
               volunteerArray.push(email);
+              volunteersNotConfirmed.push(email);
               return db.collection("Events").doc(doc.id).update({
                 volunteersGoing:volunteerArray,
+                volunteersNotConfirmed:volunteersNotConfirmed,
                 numOfVolunteerRemaining:(doc.data().numOfVolunteerRemaining-1)
               })
               .then(function() {

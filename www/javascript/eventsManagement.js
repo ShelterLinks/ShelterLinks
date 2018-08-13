@@ -83,7 +83,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       "<h6 class=\"eventTime\">"+ dateString +" in "+borough+"<span class=\"nope\">"+startDate+"</span></h6>" +
       "<h3 class=\"easyDate\">"+month+"<br>"+day+"</h3>"+
       "<div class=\"volunteer\"><button id=\""+doc.id+"\" type=\"button\" class=\"btn btn-primary volunteered update\">Update Event</button>"+
-      "<button type=\"button\" class=\"btn btn-primary volunteered confirm\">Confirm Volunteers</button></div></div></div>")
+      "<button type=\"button\" id=\""+doc.id+"\" class=\"btn btn-primary volunteered confirm\">Confirm Volunteers</button></div></div></div>")
       counter++;
     });
     var update=document.getElementsByClassName("update");
@@ -98,6 +98,25 @@ firebase.auth().onAuthStateChanged(function(user) {
           })
           .then(function() {
             window.location.href="updateEvent.html";
+          })
+        })
+        .catch(function(error) {
+          console.log("Error getting documents: ", error);
+        });
+      })
+    }
+    var confirm=document.getElementsByClassName("confirm");
+    for (var i=0;i<confirm.length;i++){
+      confirm[i].addEventListener('click',e => {
+        console.log(e.path[0].id);
+        db.collection("Events").doc(e.path[0].id)
+        .get()
+        .then(function(doc) {
+          return db.collection("Events").doc(doc.id).update({
+            confirmVolunteers: true
+          })
+          .then(function() {
+            window.location.href="confirmVolunteers.html";
           })
         })
         .catch(function(error) {
