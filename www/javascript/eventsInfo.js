@@ -135,7 +135,9 @@ var db = firebase.firestore();
                       var volunteersNotConfirmed=doc.data().volunteersNotConfirmed;
                       volunteersNotConfirmed.splice(volunteersNotConfirmed.indexOf(email),1);
                       volunteerArray.splice(volunteerArray.indexOf(email),1);
-                      real+=1;
+                      if(!(real=="No Limit")){
+                        real+=1;
+                      }
                       return db.collection("Events").doc(doc.id).update({
                         volunteersGoing: volunteerArray,
                         volunteersNotConfirmed:volunteersNotConfirmed,
