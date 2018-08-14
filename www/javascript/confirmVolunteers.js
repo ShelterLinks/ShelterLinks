@@ -13,8 +13,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }else{
       img2.src = user.photoURL;
     }
-    console.log(user.photoURL);
-    console.log(name);
   }else {
     console.log("boi");
   }
@@ -64,7 +62,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             })
           })
         })
-        console.log (confirmedList);
       });
       return db.collection("Events").doc(doc.id).update({
         confirmVolunteers:false

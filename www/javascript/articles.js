@@ -27,7 +27,6 @@ var db = firebase.firestore();
           .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc1) {
               correctId=doc1.data().articleOn;
-              console.log(correctId);
               db.collection("Articles").doc(correctId)
               .get()
               .then(function(doc) {
@@ -64,7 +63,6 @@ var db = firebase.firestore();
           .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc1) {
               correctId=doc1.data().articleOn;
-              console.log(correctId);
               db.collection("Articles").doc(correctId)
               .get()
               .then(function(doc) {

@@ -115,7 +115,6 @@ var idOfUser;
     querySnapshot.forEach(function(doc) {
       if ((doc.data().endDate!=="Ongoing")&&(doc.data().endDate<today)){
         db.collection("Events").doc(doc.id).delete().then(function() {
-          console.log(doc.id);
         }).catch(function(error) {
           console.error("Error removing document: ", error);
         });
@@ -153,10 +152,6 @@ var idOfUser;
     var timeds=data.indexOf(",",timed+1);
     var startTimed=data.substring(timeds+2,(data.indexOf("-",timed+1))-1).replace(" ","");
     var organization=target[0].id;
-    console.log(startTimed);
-    console.log(organization);
-    console.log(eventNamed);
-    console.log(startDatee);
     db.collection("Events").where("organization", "==", organization).where("startDate", "==",startDatee).where("startTime", "==", startTimed).where("name", "==", eventNamed)
     .get()
     .then(function(querySnapshot) {

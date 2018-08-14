@@ -38,6 +38,9 @@ var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
           $("#eventsSigned").append("Events you signed up for<hr>")
           $("#eventsSign").append("Your Links<hr>");
           var eventsGoing=doc.data().eventsGoing;
+          if (eventsGoing.length==0){
+              $("#signedUpEvents").append("<br><br><i class=\"noEvents\">You didn't sign up for any events!</i><br><br><br><br>");
+          }
           eventsGoing.forEach(function(event) {
             db.collection("Events").doc(event).get().then(function(doc){
               var name = doc.data().name;
@@ -101,10 +104,6 @@ var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
           var timeds=data.indexOf(",",timed+1);
           var startTimed=data.substring(timeds+2,(data.indexOf("-",timed+1))-1).replace(" ","");
           var organization=target[0].id;
-          console.log(startTimed);
-          console.log(organization);
-          console.log(eventNamed);
-          console.log(startDatee);
           db.collection("Events").where("organization", "==", organization).where("startDate", "==",startDatee).where("startTime", "==", startTimed).where("name", "==", eventNamed)
           .get()
           .then(function(querySnapshot) {
