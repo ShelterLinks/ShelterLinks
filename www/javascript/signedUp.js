@@ -97,8 +97,8 @@ var storage = firebase.storage();
               volunteerArray.push(email);
               volunteersNotConfirmed.push(email);
               var newNumber;
-              if (doc.data().numOfVolunteerRemaining=="Ongoing"){
-                newNumber="Ongoing";
+              if (doc.data().numOfVolunteerRemaining=="No Limit"){
+                newNumber="No Limit";
               }else{
                 newNumber=doc.data().numOfVolunteerRemaining-1;
               }
