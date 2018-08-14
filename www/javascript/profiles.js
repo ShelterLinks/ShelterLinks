@@ -35,7 +35,7 @@ var days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
             "<a href=\"sheltercoins.html\"><i class=\"fas fa-link\"></i></a>"+
             "<a href=\"#\"><i class=\"fas fa-donate\"></i></a>"+
           "</div>")
-          $("#eventsSigned").append("Events you signed up for<hr><br><br><br>")
+          $("#eventsSigned").append("Events you signed up for<hr>")
           $("#eventsSign").append("Your Links<hr>");
           var eventsGoing=doc.data().eventsGoing;
           eventsGoing.forEach(function(event) {

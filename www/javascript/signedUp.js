@@ -96,10 +96,16 @@ var storage = firebase.storage();
             signedUp.addEventListener('click',e => {
               volunteerArray.push(email);
               volunteersNotConfirmed.push(email);
+              var newNumber;
+              if (doc.data().numOfVolunteerRemaining=="Ongoing"){
+                newNumber="Ongoing";
+              }else{
+                newNumber=doc.data().numOfVolunteerRemaining-1;
+              }
               return db.collection("Events").doc(doc.id).update({
                 volunteersGoing:volunteerArray,
                 volunteersNotConfirmed:volunteersNotConfirmed,
-                numOfVolunteerRemaining:(doc.data().numOfVolunteerRemaining-1)
+                numOfVolunteerRemaining:newNumber
               })
               .then(function() {
                 db.collection("Users").where("email", "==", email)
