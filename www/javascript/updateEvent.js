@@ -13,8 +13,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }else{
       img2.src = user.photoURL;
     }
-    console.log(user.photoURL);
-    console.log(name);
   }else {
     console.log("boi");
   }
@@ -46,7 +44,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       }
       uploader.src=ourData.imagePath;
       imagePath=ourData.imagePath;
-      console.log(ourData.imagePath);
       address.value=ourData.address;
       nameOfEvent.value=ourData.name;
       description.value=ourData.description;

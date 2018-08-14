@@ -89,7 +89,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     var update=document.getElementsByClassName("update");
     for (var i=0;i<update.length;i++){
       update[i].addEventListener('click',e => {
-        console.log(e.path[0].id);
         db.collection("Events").doc(e.path[0].id)
         .get()
         .then(function(doc) {
@@ -108,7 +107,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     var confirm=document.getElementsByClassName("confirm");
     for (var i=0;i<confirm.length;i++){
       confirm[i].addEventListener('click',e => {
-        console.log(e.path[0].id);
         db.collection("Events").doc(e.path[0].id)
         .get()
         .then(function(doc) {
@@ -138,10 +136,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     var timeds=data.indexOf(",",timed+1);
     var startTimed=data.substring(timeds+2,(data.indexOf("-",timed+1))-1).replace(" ","");
     var organization=target[0].id;
-    console.log(startTimed);
-    console.log(organization);
-    console.log(eventNamed);
-    console.log(startDatee);
     db.collection("Events").where("organization", "==", organization).where("startDate", "==",startDatee).where("startTime", "==", startTimed).where("name", "==", eventNamed)
     .get()
     .then(function(querySnapshot) {

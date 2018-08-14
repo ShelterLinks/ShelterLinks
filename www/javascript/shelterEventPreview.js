@@ -58,7 +58,6 @@ var db = firebase.firestore();
             }
             var paperworkVolunteers="";
             if (doc.data().paperwork.length>0){
-              console.log("yes");
               paperworkVolunteers="<a style=\"text-decoration:underline;\" href=\""+doc.data().paperwork+"\" download>Click to Download Paperwork</a>";
             }else{
               paperworkVolunteers="Yay! No paperwork!";
@@ -70,7 +69,6 @@ var db = firebase.firestore();
             var zipCode=doc.data().zipCode;
             var points=doc.data().pointsGained;
             volunteerArray=doc.data().volunteersGoing;
-            console.log(volunteerArray);
             var volunteersGoing=doc.data().volunteersGoing;
             var volunteerGoingString="";
             var displayVolunteers="";
@@ -89,7 +87,6 @@ var db = firebase.firestore();
                 querySnapshot.forEach(function(doc) {
                   var individualPhoto=doc.data().photoURL;
                   displayVolunteers = "<img class=\"imagePhoto\" src=\""+individualPhoto+"\" />";
-                  console.log(displayVolunteers);
                 });
                 $("#info").append(displayVolunteers);
               })

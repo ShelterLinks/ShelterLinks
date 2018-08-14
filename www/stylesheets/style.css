@@ -10,7 +10,9 @@ html, body {
 }
 
 .frontpage{
-
+  background-color:#ba3b21;
+  height:100%;
+  width:100%;
 }
 .q1{
   text-align:center;
@@ -43,4 +45,38 @@ html, body {
 
 .enter{
   text-decoration: none;
+}
+.blackleft{
+  position:absolute;
+  bottom:0;
+  left:0;
+  background-color:#27272E;
+  width:40%;
+  height:10%;
+}
+.blackright{
+  position:absolute;
+  bottom:0;
+  right:0;
+  background-color:#27272E;
+  width:40%;
+  height:10%;
+}
+.middle{
+  position:absolute;
+  bottom:0;
+  left:39%;
+  margin-left:auto;
+  margin-right:auto;
+  background-color:#4F4F5C;
+  width:22%;
+  height:10%;
+}
+.blogo{
+  margin-top:20%;
+  width:100%;
+  height:40%;
+  margin-left:auto;
+  margin-right:auto;
+  color:white;
 }
