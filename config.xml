@@ -13,7 +13,7 @@
     <author email="shelterlinksapp@gmail.com" href="https://phonegap.com">
         ShelterLinks Team
     </author>
-    <icon src="www/images/icon.png" platform="android" width="57" height="57" density="mdpi" />
+    <icon src="res/www/images/icon.png" />
     <preference name="phonegap-version" value="cli-8.0.0" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <access origin="*" />
