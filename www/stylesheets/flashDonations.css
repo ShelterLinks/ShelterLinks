@@ -58,7 +58,7 @@ html, body {
   margin-right:2%;
 }
 .form-control{
-  width:81.5%;
+  width:81.3%;
   border-color:#ba3b21;
   padding-top:25px;
   padding-bottom:25px;
@@ -77,11 +77,12 @@ label{
   position:relative;
   top:10px;
   color:#ba3b21;
+  left:-20px;
 }
 .form-group{
   position:absolute;
   margin-left:40px;
-  top:71%;
+  top:71.2%;
   left:62.5%;
   text-align:center;
 }
