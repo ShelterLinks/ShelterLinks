@@ -8,6 +8,6 @@ var auth = firebase.auth();
     auth.signOut();
     var x = setTimeOut(function() {
       window.location.replace("volunteer.html");
-    }, 1000);
+    }, 3000);
   });
 }());
